@@ -109,7 +109,7 @@
     {% endfor %}
   </div>
 
-  {% if section.settings.texto_botao and section.settings.link_botao != blank %}
+  {% if section.settings.texto_botao != blank %}
     <div class="botao-container">
       <a href="{{ section.settings.link_botao | default: '/collections/all' }}" class="botao-produtos">
         {{ section.settings.texto_botao }}
