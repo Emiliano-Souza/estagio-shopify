@@ -22,7 +22,7 @@ O objetivo é praticar conceitos fundamentais de desenvolvimento, como:
 ## 📁 Estrutura do repositório
 
 ```bash
-Bootcamp-2-ECommerce-2026/
+estagio-shopify/
 ├── exercicios/
 │   ├── semana-1/
 │   │   ├── sobre-mim.md
