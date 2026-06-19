@@ -34,14 +34,13 @@ estagio-shopify/
 │   │   ├── reflexao-ia.md
 │   │   └── quando-usar-ia.md
 │   └── semana-2/
-│       ├── hello-world.liquid
-│       ├── banner-destaque.liquid
-│       ├── lista-caracteristicas.liquid
-│       ├── pratica-filtros.liquid
-│       ├── exercicio-liquid-basico.liquid
-│       ├── exercicio-filtros.liquid
-│       ├── exercicio-product-grid.liquid
-│       └── product-card.liquid
+│       ├── sections/
+│       │   ├── exercicio-liquid-basico.liquid
+│       │   ├── exercicio-product-grid.liquid
+│       │   └── exercicios-filtros.liquid
+│       ├── snippets/
+│       │   └── product-card.liquid
+│       └── quando-usar-IA-liquid.md
 ├── .gitignore
 └── README.md
 ```
@@ -228,6 +227,24 @@ Arquivos relacionados:
 
 - `exercicios/semana-2/product-card.liquid`
 - `exercicios/semana-2/exercicio-product-grid.liquid`
+
+---
+
+## 🧠 Mini-doc — Uso de IA em Liquid
+
+Também foi criado um mini-documento com uma reflexão sobre o uso de IA nos exercícios de Liquid da Semana 2.
+
+O documento aborda:
+
+- Como a IA ajudou na criação de sections Liquid
+- Como a IA ajudou na organização da lógica de filtros e condicionais
+- Situações em que a IA sugeriu soluções que precisaram ser revisadas
+- Importância de testar tudo no preview da Shopify
+- Cuidados ao usar IA em regras de produto, estoque, promoção e configurações do editor visual
+
+Arquivo relacionado:
+
+- `exercicios/semana-2/quando-usar-IA-liquid.md`
 
 ---
 
