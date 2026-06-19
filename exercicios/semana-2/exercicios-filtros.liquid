@@ -98,10 +98,10 @@
             >
           {% endif %}
 
-          {% if esta_em_promocao %}
-            <span class="badge-promocao">Em promoção</span>
-          {% elsif produto.available == false %}
+          {% if produto.available == false %}
             <span class="badge-esgotado">Esgotado</span>
+          {% elsif esta_em_promocao %}
+            <span class="badge-promocao">Em promoção</span>
           {% else %}
             <span class="badge-disponivel">Disponível</span>
           {% endif %}
