@@ -1,32 +1,18 @@
-{% comment %}
-  ==============================================================================
-  SECTION: Hero Banner Dinâmico (Exercício 1 - Terça-feira)
-  ==============================================================================
-{% endcomment %}
-
 {% schema %}
 {
-  "name": "Hero Banner Dinâmico",
+  "name": "Hero Banner",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Imagem de Fundo"
-    },
-    {
-      "type": "color",
-      "id": "overlay_color",
-      "label": "Cor do Overlay",
-      "default": "#000000"
-    },
+    { "type": "image_picker", "id": "imagem_fundo", "label": "Imagem de fundo" },
+    { "type": "color", "id": "cor_overlay", "label": "Cor do overlay", "default": "#000000" },
     {
       "type": "range",
-      "id": "overlay_opacity",
-      "label": "Opacidade do Overlay (%)",
+      "id": "opacidade_overlay",
+      "label": "Opacidade do overlay",
       "min": 0,
       "max": 100,
-      "step": 1,
-      "default": 50
+      "step": 5,
+      "default": 40,
+      "unit": "%"
     },
     {
       "type": "range",
@@ -55,84 +41,46 @@
       "type": "heading",
       "name": "Título",
       "settings": [
-        {
-          "type": "text",
-          "id": "heading_text",
-          "label": "Texto do Título",
-          "default": "Título do Banner"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Cor do Título",
-          "default": "#ffffff"
-        },
+        { "type": "text", "id": "texto_titulo", "label": "Texto do título", "default": "Título do banner" },
         {
           "type": "select",
-          "id": "heading_size",
-          "label": "Tamanho do Título",
+          "id": "tamanho_titulo",
+          "label": "Tamanho",
           "options": [
-            { "value": "h1", "label": "Grande" },
-            { "value": "h2", "label": "Médio" },
-            { "value": "h3", "label": "Pequeno" }
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" }
           ],
           "default": "h1"
-        }
+        },
+        { "type": "color", "id": "cor_titulo", "label": "Cor do texto", "default": "#ffffff" }
       ]
     },
     {
       "type": "paragraph",
       "name": "Parágrafo",
       "settings": [
-        {
-          "type": "richtext",
-          "id": "paragraph_text",
-          "label": "Conteúdo",
-          "default": "<p>Adicione um texto descritivo aqui para o seu banner.</p>"
-        },
-        {
-          "type": "color",
-          "id": "text_color",
-          "label": "Cor do Parágrafo",
-          "default": "#ffffff"
-        },
-        {
-          "type": "select",
-          "id": "paragraph_size",
-          "label": "Tamanho do Texto",
-          "options": [
-            { "value": "large", "label": "Grande" },
-            { "value": "normal", "label": "Normal" },
-            { "value": "small", "label": "Pequeno" }
-          ],
-          "default": "normal"
-        }
+        { "type": "richtext", "id": "texto_paragrafo", "label": "Conteúdo", "default": "<p>Parágrafo do banner</p>" },
+        { "type": "color", "id": "cor_paragrafo", "label": "Cor do texto", "default": "#ffffff" }
       ]
     },
     {
       "type": "button",
       "name": "Botão",
       "settings": [
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Texto do Botão",
-          "default": "Ver mais"
-        },
-        {
-          "type": "url",
-          "id": "button_url",
-          "label": "URL do Botão"
-        },
+        { "type": "text", "id": "texto_botao", "label": "Texto do botão", "default": "Botão" },
+        { "type": "url", "id": "link_botao", "label": "Link" },
+        { "type": "color", "id": "cor_botao", "label": "Cor do botão", "default": "#ffffff" },
+        { "type": "color", "id": "cor_texto_botao", "label": "Cor do texto do botão", "default": "#000000" },
         {
           "type": "select",
-          "id": "estilo",
+          "id": "estilo_botao",
           "label": "Estilo",
           "options": [
-            { "value": "primario", "label": "Primário (Preenchido)" },
-            { "value": "secundario", "label": "Secundário (Contorno)" }
+            { "value": "primary", "label": "Preenchido" },
+            { "value": "secondary", "label": "Contorno" }
           ],
-          "default": "primario"
+          "default": "primary"
         }
       ]
     },
@@ -140,205 +88,85 @@
       "type": "image",
       "name": "Imagem",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "block_image",
-          "label": "Escolha uma Imagem"
-        },
-        {
-          "type": "text",
-          "id": "alt_text",
-          "label": "Alt text"
-        },
+        { "type": "image_picker", "id": "imagem", "label": "Imagem" },
         {
           "type": "range",
-          "id": "largura_maxima",
-          "label": "Largura máxima (px)",
+          "id": "largura_imagem",
+          "label": "Largura máxima",
           "min": 50,
           "max": 400,
-          "step": 10,
+          "step": 50,
           "default": 200,
           "unit": "px"
-        }
+        },
+        { "type": "text", "id": "alt_imagem", "label": "Alt text", "default": "Imagem do banner" }
       ]
     }
   ],
   "presets": [
-    {
-      "name": "Hero Banner",
-      "blocks": [{ "type": "heading" }, { "type": "paragraph" }, { "type": "button" }]
-    }
+    { "name": "Hero Banner", "blocks": [{ "type": "heading" }, { "type": "paragraph" }, { "type": "button" }] }
   ]
 }
 {% endschema %}
 
-<section
-  class="hero-banner hero-banner-{{ section.id }}"
-  style="min-height: {{ section.settings.altura_minima }}px;"
->
-  {% if section.settings.background_image != blank %}
-    <img
-      class="hero-banner__background"
-      src="{{ section.settings.background_image | image_url: width: 2000 }}"
-      alt="{{ section.settings.background_image.alt | escape }}"
-      width="{{ section.settings.background_image.width }}"
-      height="{{ section.settings.background_image.height }}"
-      loading="eager"
-      fetchpriority="high"
-    >
-  {% endif %}
+{{ 'section-hero-banner.css' | asset_url | stylesheet_tag }}
 
-  <div class="hero-banner__content hero-banner__content--{{ section.settings.alinhamento }}">
+<section class="hero-banner" style="min-height: {{ section.settings.altura_minima }}px;">
+  {%- if section.settings.imagem_fundo -%}
+    {{
+      section.settings.imagem_fundo
+      | image_url: width: 1920
+      | image_tag: class: 'hero-banner__imagem-fundo', loading: 'eager', alt: ''
+    }}
+  {%- endif -%}
+
+  {%- assign overlay_opacity = section.settings.opacidade_overlay | times: 0.01 -%}
+  <div
+    class="hero-banner__overlay"
+    style="background-color: {{ section.settings.cor_overlay | color_modify: 'alpha', overlay_opacity }};"
+  >
+    {%- comment %} Proteção contra formatadores {%- endcomment %}
+  </div>
+
+  <div class="hero-banner__conteudo hero-banner__conteudo--{{ section.settings.alinhamento }}">
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'heading' %}
-          {% if block.settings.heading_text != blank %}
-            <{{ block.settings.heading_size }}
-              class="hero-banner__heading hero-banner__heading--{{ block.settings.heading_size }}"
-              style="color: {{ block.settings.text_color }};"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.heading_text | escape }}
-            </{{ block.settings.heading_size }}>
-          {% endif %}
-
+          <{{ block.settings.tamanho_titulo }}
+            class="hero-banner__heading"
+            style="color: {{ block.settings.cor_titulo }};"
+            {{ block.shopify_attributes }}
+          >
+            {{- block.settings.texto_titulo | escape -}}
+          </{{ block.settings.tamanho_titulo }}>
         {% when 'paragraph' %}
-          {% if block.settings.paragraph_text != blank %}
-            <div
-              class="hero-banner__paragraph hero-banner__paragraph--{{ block.settings.paragraph_size }}"
-              style="color: {{ block.settings.text_color }};"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.paragraph_text }}
-            </div>
-          {% endif %}
-
+          <div
+            class="hero-banner__text"
+            style="color: {{ block.settings.cor_paragrafo }};"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.texto_paragrafo }}
+          </div>
         {% when 'button' %}
-          {% if block.settings.button_text != blank %}
-            <a
-              {% if block.settings.button_url == blank %}
-                role="link"
-                aria-disabled="true"
-              {% else %}
-                href="{{ block.settings.button_url }}"
-              {% endif %}
-              class="hero-banner__btn hero-banner__btn--{{ block.settings.estilo }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.button_text | escape }}
-            </a>
-          {% endif %}
-
+          <a
+            href="{{ block.settings.link_botao }}"
+            class="hero-banner__button hero-banner__button--{{ block.settings.estilo_botao }}"
+            style="--btn-bg: {{ block.settings.cor_botao }}; --btn-text: {{ block.settings.cor_texto_botao }};"
+            {{ block.shopify_attributes }}
+          >
+            {{- block.settings.texto_botao | escape -}}
+          </a>
         {% when 'image' %}
-          {% if block.settings.block_image != blank %}
-            <div
-              class="hero-banner__img-wrapper"
-              {{ block.shopify_attributes }}
-            >
-              <img
-                class="hero-banner__img"
-                src="{{ block.settings.block_image | image_url: width: 800 }}"
-                alt="{{ block.settings.alt_text | default: block.settings.block_image.alt | escape }}"
-                width="{{ block.settings.block_image.width }}"
-                height="{{ block.settings.block_image.height }}"
-                loading="lazy"
-                style="max-width: {{ block.settings.largura_maxima }}px;"
-              >
+          {% if block.settings.imagem != blank %}
+            <div class="hero-banner__bloco-imagem" {{ block.shopify_attributes }}>
+              {{
+                block.settings.imagem
+                | image_url: width: block.settings.largura_imagem
+                | image_tag: class: 'hero-banner__img', alt: block.settings.alt_imagem, loading: 'lazy'
+              }}
             </div>
           {% endif %}
       {% endcase %}
     {% endfor %}
   </div>
 </section>
-
-<style>
-  /* Container Principal */
-  .hero-banner-{{ section.id }} {
-    position: relative;
-    min-height: {{ section.settings.altura_minima }}px;
-    padding: 6rem 2rem;
-    display: flex;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-  }
-
-  /* Overlay */
-  .hero-banner-{{ section.id }}::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: {{ section.settings.overlay_color }};
-    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .hero-banner__heading {
-    margin: 0 0 1rem;
-    line-height: 1.2;
-  }
-
-  /* Estilos de Tamanho do Parágrafo */
-  .hero-banner__paragraph--large { font-size: 1.5rem; line-height: 1.4; margin-bottom: 1.5rem; }
-  .hero-banner__paragraph--normal { font-size: 1.125rem; line-height: 1.6; margin-bottom: 1.5rem; }
-  .hero-banner__paragraph--small { font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; }
-
-  .hero-banner__paragraph a {
-    color: inherit;
-  }
-
-  .hero-banner__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-  }
-
-  /* Container de conteúdo */
-  .hero-banner__content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    box-sizing: border-box;
-  }
-
-  /* Ajuste de Alinhamento Dinâmico */
-  .hero-banner__content--left { align-items: flex-start; text-align: left; }
-  .hero-banner__content--center { align-items: center; text-align: center; }
-  .hero-banner__content--right { align-items: flex-end; text-align: right; }
-
-  /* Botões com Estilo Dinâmico */
-  .hero-banner__btn {
-    display: inline-block;
-    padding: .75rem 2rem;
-    text-decoration: none;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: opacity .2s ease;
-  }
-  .hero-banner__btn--primario { background-color: #000000; color: #ffffff; }
-  .hero-banner__btn--secundario { background-color: transparent; border: 2px solid #000000; color: #000000; }
-
-  /* Imagem com Largura Dinâmica */
-  .hero-banner__img {
-    height: auto;
-    display: block;
-    border-radius: 4px;
-  }
-
-  /* Responsividade (Mobile: sempre centralizado) */
-  @media screen and (max-width: 768px) {
-    .hero-banner-{{ section.id }} { min-height: 350px; padding: 4rem 1rem; }
-    .hero-banner__content { align-items: center !important; text-align: center !important; }
-  }
-</style>
