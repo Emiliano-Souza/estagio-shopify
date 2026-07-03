@@ -1,0 +1,178 @@
+/* assets/section-product-extra-info.css */
+
+.product-extra-info {
+    margin-top: 0;
+    margin-bottom: 4rem;
+    padding: 0;
+}
+
+/* Remove conflitos de margem com o bloco principal */
+.product-extra-info .product.grid {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Ajustes para Mobile / Telemóvel (Telas até 749px)
+   ========================================================================== */
+@media screen and (max-width: 749px) {
+
+    /* Oculta o espaçador estrutural */
+    .product-extra-info__spacer {
+        display: none !important;
+    }
+
+    /* Ajusta o respiro da seção inteira no mobile */
+    .product-extra-info {
+        margin-bottom: 3rem;
+        padding: 0 1.5rem;
+        /* Evita que o bloco cole nas laterais do ecrã */
+    }
+
+    /* Calibra o alinhamento do texto e elementos com o resto da página */
+    .product-extra-info .product__info-wrapper {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}
+
+/* ==========================================================================
+   Ajustes para Desktop (Telas a partir de 750px)
+   ========================================================================== */
+@media screen and (min-width: 750px) {
+
+    /* Quando configurado para a Esquerda */
+    .product-extra-info__grid--left {
+        flex-direction: row-reverse !important;
+    }
+
+    .product-extra-info__grid--left .product__info-wrapper {
+        padding-left: 0 !important;
+    }
+
+    /* Quando configurado para a Direita */
+    .product-extra-info__grid--right .product__info-wrapper {
+        padding-right: 0 !important;
+    }
+}
+
+/* Tipografia All-Black Premium */
+.product-extra-info__title {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    color: #000000;
+}
+
+.product-extra-info__container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Elemento Material Linha Preta Sólida */
+.product-extra-info__material {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.8rem 0;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #000000;
+    border-bottom: 0.1rem solid #000000;
+}
+
+.product-extra-info__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    width: 2rem;
+    flex-shrink: 0;
+}
+
+.product-extra-info__icon svg {
+    stroke: #000000;
+}
+
+.product-extra-info__text {
+    line-height: 1.4;
+}
+
+/* Acordeão Minimalista High-Contrast */
+.product-extra-info__details {
+    border-bottom: 0.1rem solid #000000;
+}
+
+.product-extra-info__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.8rem 0;
+    cursor: pointer;
+    list-style: none;
+}
+
+.product-extra-info__summary::-webkit-details-marker {
+    display: none;
+}
+
+.product-extra-info__summary-title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 1.3rem;
+    letter-spacing: 0.05rem;
+    color: #000000;
+    transition: opacity 0.2s ease;
+}
+
+.product-extra-info__summary:hover .product-extra-info__summary-title {
+    opacity: 0.6;
+}
+
+.product-extra-info__caret svg {
+    transition: transform 0.2s ease-in-out;
+    color: #000000;
+}
+
+.product-extra-info__details[open] .product-extra-info__caret svg {
+    transform: rotate(180deg);
+}
+
+.product-extra-info__collapsible-content {
+    padding-bottom: 1.8rem;
+    line-height: 1.6;
+    color: #333333;
+    font-size: 1.3rem;
+}
+
+.product-extra-info__collapsible-content p {
+    margin: 0;
+}
+
+/* Video Wrapper */
+.product-extra-info__video-container {
+    padding: 2.5rem 0 1rem 0;
+}
+
+.product-extra-info__video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border: 1px solid #000000;
+}
+
+.product-extra-info__video-wrapper iframe,
+.product-extra-info__video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background-color: #000000;
+}
