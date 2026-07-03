@@ -393,14 +393,12 @@ Adicionar seção
 
 O repositório contém:
 
-- Exercícios de JavaScript da Semana 1
+- Exercícios dos projetos semanais.
 - Análises em Markdown
 - Reflexões sobre IA
-- Atividades práticas de Liquid da Semana 2
 - Sections Liquid dos desafios
-- Snippet reutilizável de produto
 - `.gitignore` configurado
-- README atualizado com a documentação da Sprint 1
+- README atualizado com a documentação
 
 ## 🎯 Aprendizados
 
