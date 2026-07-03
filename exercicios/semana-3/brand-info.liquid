@@ -1,0 +1,75 @@
+{%- comment -%} sections/brand-info.liquid {%- endcomment -%}
+
+{{ 'section-brand-info.css' | asset_url | stylesheet_tag }}
+
+{% assign marca = product.metafields.custom.marca.value %}
+
+{% if marca %}
+  <section class="brand-info">
+    <div class="brand-info__container}">
+      <h2 class="brand-info__titulo">
+        {{ section.settings.titulo }}
+      </h2>
+
+      <div class="brand-info__card">
+        {% if marca.logo %}
+          <img
+            class="brand-info__logo"
+            src="{{ marca.logo.value | image_url: width: 200 }}"
+            alt="{{ marca.nome }}"
+            loading="lazy"
+            width="200"
+            height="200"
+          >
+        {% endif %}
+
+        <div class="brand-info__detalhes">
+          <h3 class="brand-info__nome">
+            {{ marca.nome }}
+          </h3>
+
+          {% if marca.pais_origem %}
+            <div class="brand-info__origem">
+              <strong>Origem:</strong>
+              {{ marca.pais_origem }}
+            </div>
+          {% endif %}
+
+          {% if marca.descricao %}
+            <div class="brand-info__descricao">
+              {{ marca.descricao }}
+            </div>
+          {% endif %}
+
+          {% if marca.site %}
+            <div class="brand-info__acao">
+              <a
+                href="{{ marca.site }}"
+                target="_blank"
+                rel="noopener"
+                class="brand-info__link"
+              >
+                Visitar site da marca →
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sobre a Marca",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título da seção",
+      "default": "Sobre a Marca"
+    }
+  ],
+  "presets": [{ "name": "Sobre a Marca" }]
+}
+{% endschema %}
