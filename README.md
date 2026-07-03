@@ -33,14 +33,21 @@ estagio-shopify/
 │   │   ├── com-ia.js
 │   │   ├── reflexao-ia.md
 │   │   └── quando-usar-ia.md
-│   └── semana-2/
-│       ├── sections/
-│       │   ├── exercicio-liquid-basico.liquid
-│       │   ├── exercicio-product-grid.liquid
-│       │   └── exercicios-filtros.liquid
-│       ├── snippets/
-│       │   └── product-card.liquid
-│       └── quando-usar-IA-liquid.md
+│   ├── semana-2/
+│   │   ├──  sections/
+│   │   │   ├── exercicio-liquid-basico.liquid
+│   │   │   ├── exercicio-product-grid.liquid
+│   │   │   └── exercicios-filtros.liquid
+│   │   ├── snippets/
+│   │   │   └── product-card.liquid
+│   │   └── quando-usar-IA-liquid.md
+│   └── semana-3/
+│      ├── hero-banner.liquid
+│      ├── section-hero-banner.css
+│      ├── product-extra-info.liquid
+│      ├── section-product-extra-info.css
+│      ├── brand-info.liquid
+│      └── section-brand-info.liquid
 ├── .gitignore
 └── README.md
 ```
@@ -248,6 +255,44 @@ Arquivo relacionado:
 
 ---
 
+## ✅ Semana 3 — Avançando com Shopify: Metafields, Metaobjects e Blocos Dinâmicos
+
+Durante a Semana 3, o foco foi aprofundar o conhecimento em personalização avançada do Shopify, utilizando dados customizados e componentes flexíveis.
+
+---
+
+### Desafio 3.1 — Hero Banner com Blocos Dinâmicos
+
+Neste desafio, foi criada uma section `Hero Banner` totalmente flexível, permitindo que o lojista controle o layout através do editor visual[cite: 2].
+
+**Funcionalidades implementadas:**
+- **Settings gerais:** Imagem de fundo, overlay com opacidade ajustável, altura mínima e alinhamento de conteúdo[cite: 2].
+- **Blocos dinâmicos:** Implementação de 4 tipos de blocos (Título, Parágrafo, Botão e Imagem)[cite: 2].
+- **Flexibilidade:** Capacidade de adicionar, remover e reordenar blocos diretamente pelo admin[cite: 2].
+- **Responsividade:** Layout adaptativo para desktop e mobile[cite: 2].
+
+Arquivo relacionado:
+- `semana-3/hero-banner.liquid`
+- `semana-3/section-hero-banner.css`
+
+---
+
+### Desafio 3.2 — Metafields e Metaobjects
+
+Neste desafio, aprofundamos a estrutura de dados do Shopify para enriquecer as páginas de produto[cite: 1].
+
+**Funcionalidades implementadas:**
+- **Metafields de Produto:** Criação e exibição de dados customizados como "Material", "Instruções de Cuidado" e "Vídeo do Produto"[cite: 1].
+- **Metaobjects (Brand Info):** Criação de uma definição de objeto para gerenciar informações da marca (logo, descrição, site, país) de forma centralizada[cite: 1].
+- **Conexão:** Uso de `metaobject reference` para vincular produtos a marcas específicas[cite: 1].
+- **Exibição condicional:** As seções só são renderizadas na loja se os dados estiverem preenchidos, garantindo uma interface limpa[cite: 1].
+
+Arquivos relacionados:
+- `semana-3/product-extra-info.liquid`
+- `semana-3/brand-info.liquid`
+- `semana-3/section-product-extra-info.css`
+- `semana-3/section-brand-info.css`
+
 ## 🛠️ Tecnologias utilizadas
 
 - JavaScript
@@ -322,13 +367,14 @@ node exercicios/semana-1/com-ia.js
 
 ## 🛒 Como testar os arquivos Liquid no Shopify
 
-Para testar as sections Liquid no preview da Shopify, é necessário copiar os arquivos para as pastas corretas do tema:
+Para testar as sections Liquid no preview da Shopify, é necessário copiar os arquivos para as pastas corretas do tema, exemplos:
 
 ```bash
 sections/exercicio-liquid-basico.liquid
 sections/exercicio-filtros.liquid
 sections/exercicio-product-grid.liquid
 snippets/product-card.liquid
+assets/hero-banner.css
 ```
 
 Depois, dentro da pasta do tema, rode:
@@ -342,12 +388,6 @@ No editor visual da Shopify, as sections podem ser adicionadas em:
 ```text
 Adicionar seção
 ```
-
-Sections criadas:
-
-- `Exercício Liquid Básico`
-- `Exercício Filtros Liquid`
-- `Grade de Produtos`
 
 ## 📌 Organização do projeto
 
