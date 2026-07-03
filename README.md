@@ -42,12 +42,12 @@ estagio-shopify/
 │   │   │   └── product-card.liquid
 │   │   └── quando-usar-IA-liquid.md
 │   └── semana-3/
-│      ├── hero-banner.liquid
-│      ├── section-hero-banner.css
-│      ├── product-extra-info.liquid
-│      ├── section-product-extra-info.css
-│      ├── brand-info.liquid
-│      └── section-brand-info.liquid
+│       ├── hero-banner.liquid
+│       ├── section-hero-banner.css
+│       ├── product-extra-info.liquid
+│       ├── section-product-extra-info.css
+│       ├── brand-info.liquid
+│       └── section-brand-info.liquid
 ├── .gitignore
 └── README.md
 ```
