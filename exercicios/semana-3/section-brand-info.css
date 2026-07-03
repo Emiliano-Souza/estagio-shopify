@@ -1,0 +1,87 @@
+/* assets/section-brand-info.css */
+
+.brand-info {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width: 530px;
+    padding-left: 10rem;
+
+}
+
+.brand-info__container {
+    width: 100%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.brand-info__titulo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    color: #000;
+    margin-bottom: 2rem;
+    /* Linha abaixo do título */
+    padding-bottom: 2rem;
+    border-bottom: 0.1rem solid #000;
+}
+
+.brand-info__card {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    padding-bottom: 2rem;
+}
+
+.brand-info__logo {
+    width: 140px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.brand-info__detalhes {
+    flex: 1;
+}
+
+.brand-info__nome,
+.brand-info__origem,
+.brand-info__descricao,
+.brand-info__acao {
+    padding: 1.6rem 0;
+    border-bottom: 0.1rem solid #000;
+}
+
+.brand-info__nome {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.brand-info__origem {
+    font-size: 1.3rem;
+    color: #666;
+}
+
+.brand-info__descricao {
+    font-size: 1.4rem;
+    line-height: 1.6;
+}
+
+.brand-info__link {
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #000;
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 749px) {
+    .brand-info__card {
+        flex-direction: column;
+    }
+
+    .brand-info__container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
