@@ -6,27 +6,20 @@
     padding: 0;
 }
 
-/* Remove conflitos de margem com o bloco principal */
 .product-extra-info .product.grid {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-/* ==========================================================================
-   Ajustes para Mobile / Telemóvel (Telas até 749px)
-   ========================================================================== */
 @media screen and (max-width: 749px) {
 
-    /* Oculta o espaçador estrutural */
     .product-extra-info__spacer {
         display: none !important;
     }
 
-    /* Ajusta o respiro da seção inteira no mobile */
     .product-extra-info {
         margin-bottom: 3rem;
         padding: 0 1.5rem;
-        /* Evita que o bloco cole nas laterais do ecrã */
     }
 
     /* Calibra o alinhamento do texto e elementos com o resto da página */
@@ -36,9 +29,6 @@
     }
 }
 
-/* ==========================================================================
-   Ajustes para Desktop (Telas a partir de 750px)
-   ========================================================================== */
 @media screen and (min-width: 750px) {
 
     /* Quando configurado para a Esquerda */
@@ -50,13 +40,11 @@
         padding-left: 0 !important;
     }
 
-    /* Quando configurado para a Direita */
     .product-extra-info__grid--right .product__info-wrapper {
         padding-right: 0 !important;
     }
 }
 
-/* Tipografia All-Black Premium */
 .product-extra-info__title {
     margin-top: 0;
     margin-bottom: 2rem;
@@ -72,7 +60,6 @@
     flex-direction: column;
 }
 
-/* Elemento Material Linha Preta Sólida */
 .product-extra-info__material {
     display: flex;
     align-items: center;
@@ -101,7 +88,6 @@
     line-height: 1.4;
 }
 
-/* Acordeão Minimalista High-Contrast */
 .product-extra-info__details {
     border-bottom: 0.1rem solid #000000;
 }
@@ -153,7 +139,6 @@
     margin: 0;
 }
 
-/* Video Wrapper */
 .product-extra-info__video-container {
     padding: 2.5rem 0 1rem 0;
 }

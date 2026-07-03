@@ -8,10 +8,8 @@
 
 }
 
-/* O container precisa das mesmas margens do tema para alinhar com o vídeo */
 .brand-info__container {
     width: 100%;
-    /* Ajuste este padding-left para alinhar o início do texto com o vídeo */
     padding-left: 3rem;
     padding-right: 3rem;
 }
@@ -45,14 +43,12 @@
     flex: 1;
 }
 
-/* Estilo das linhas separadoras */
 .brand-info__nome,
 .brand-info__origem,
 .brand-info__descricao,
 .brand-info__acao {
     padding: 1.6rem 0;
     border-bottom: 0.1rem solid #000;
-    /* Linhas reativadas */
 }
 
 .brand-info__nome {
@@ -79,7 +75,6 @@
     text-decoration: underline;
 }
 
-/* Responsividade */
 @media screen and (max-width: 749px) {
     .brand-info__card {
         flex-direction: column;
