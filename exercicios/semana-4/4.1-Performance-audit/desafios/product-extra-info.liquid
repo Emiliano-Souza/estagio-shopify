@@ -1,0 +1,151 @@
+{%- comment %} sections/product-extra-info.liquid {%- endcomment %}
+
+{%- if product.metafields.custom.material.value != blank
+  or product.metafields.custom.instrucoes_cuidado.value != blank
+  or product.metafields.custom.video_url.value != blank
+-%}
+  {%- comment -%} 2.3 — Critical CSS inline: estilos acima do fold {%- endcomment -%}
+  <style>
+    .product-extra-info { margin-top: 0; margin-bottom: 4rem; padding: 0; }
+    .product-extra-info .product.grid { margin-top: 0; margin-bottom: 0; }
+    .product-extra-info__title { margin-top: 0; margin-bottom: 2rem; font-size: 1.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15rem; color: #000; }
+    .product-extra-info__container { display: flex; flex-direction: column; }
+    .product-extra-info__material { display: flex; align-items: center; gap: 1.5rem; padding: 1.8rem 0; font-size: 1.3rem; color: #000; border-bottom: 0.1rem solid #000; }
+    .product-extra-info__summary { display: flex; justify-content: space-between; align-items: center; padding: 1.8rem 0; cursor: pointer; list-style: none; }
+    .product-extra-info__details { border-bottom: 0.1rem solid #000; }
+  </style>
+
+  {%- comment -%} CSS restante carregado de forma assíncrona {%- endcomment -%}
+  <link rel="stylesheet" href="{{ 'section-product-extra-info.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="{{ 'section-product-extra-info.css' | asset_url }}"></noscript>
+
+  <div class="product-extra-info page-width">
+    {%- comment %} Classe dinâmica injecta o alinhamento sem quebrar a renderização ao vivo do editor {%- endcomment %}
+    <div class="product grid grid--1-col grid--2-col-desktop product-extra-info__grid--{{ section.settings.posicao_desktop }}">
+      <div class="grid__item product__media-wrapper product-extra-info__spacer"></div>
+
+      <div class="grid__item product__info-wrapper product-extra-info__content-col">
+        {%- if section.settings.titulo != blank -%}
+          <h2 class="product-extra-info__title">{{ section.settings.titulo }}</h2>
+        {%- endif -%}
+
+        <div class="product-extra-info__container">
+          {%- if product.metafields.custom.material.value != blank -%}
+            <div class="product-extra-info__material">
+              <span class="product-extra-info__icon" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+              </span>
+              <span class="product-extra-info__text"
+                ><strong>MATERIAL:</strong> {{ product.metafields.custom.material.value | upcase -}}
+              </span>
+            </div>
+          {%- endif -%}
+
+          {%- if product.metafields.custom.instrucoes_cuidado.value != blank -%}
+            <details class="product-extra-info__details" id="Details-{{ section.id }}">
+              <summary class="product-extra-info__summary">
+                <span class="product-extra-info__summary-title">
+                  <span class="product-extra-info__icon" aria-hidden="true">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </span>
+                  <strong>INSTRUÇÕES DE CUIDADO</strong>
+                </span>
+                <span class="product-extra-info__caret">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-caret" viewBox="0 0 10 6" width="10">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor">
+                  </svg>
+                </span>
+              </summary>
+              <div class="product-extra-info__collapsible-content">
+                <p>{{ product.metafields.custom.instrucoes_cuidado.value | newline_to_br }}</p>
+              </div>
+            </details>
+          {%- endif -%}
+
+          {%- if product.metafields.custom.video_url.value != blank -%}
+            <div class="product-extra-info__video-container">
+              <div class="product-extra-info__video-wrapper">
+                {%- if product.metafields.custom.video_url.value contains 'youtube.com'
+                  or product.metafields.custom.video_url.value contains 'youtu.be'
+                -%}
+                  {%- assign video_id = product.metafields.custom.video_url.value | split: 'v=' | last -%}
+                  {%- if video_id contains '&' -%}
+                    {%- assign video_id = video_id | split: '&' | first -%}
+                  {%- endif -%}
+                  <iframe
+                    src="https://www.youtube.com/embed/{{ video_id }}"
+                    title="Vídeo demonstrativo"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen
+                  ></iframe>
+                {%- else -%}
+                  <video src="{{ product.metafields.custom.video_url.value }}" controls></video>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Informações Extras",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título da seção",
+      "default": "INFORMAÇÕES ADICIONAIS"
+    },
+    {
+      "type": "select",
+      "id": "posicao_desktop",
+      "label": "Alinhamento no Desktop",
+      "options": [
+        {
+          "value": "right",
+          "label": "Direita"
+        },
+        {
+          "value": "left",
+          "label": "Esquerda"
+        }
+      ],
+      "default": "right"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Informações Extras"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,20 @@
+/* assets/section-hero-banner.css */
+/* Estilos não-críticos — os estilos acima do fold estão inline na section */
+
+.hero-banner__img {
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 768px) {
+    .hero-banner {
+        min-height: 350px;
+        padding: 4rem 1rem;
+    }
+
+    .hero-banner__conteudo {
+        align-items: center !important;
+        text-align: center !important;
+    }
+}

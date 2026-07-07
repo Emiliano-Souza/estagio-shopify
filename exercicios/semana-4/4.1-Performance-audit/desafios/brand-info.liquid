@@ -1,0 +1,88 @@
+{%- comment -%} sections/brand-info.liquid {%- endcomment -%}
+
+{%- comment -%} 2.3 — Critical CSS inline: estilos acima do fold {%- endcomment -%}
+<style>
+  .brand-info { margin-top: 2rem; margin-bottom: 2rem; max-width: 530px; padding-left: 10rem; }
+  .brand-info__container { width: 100%; padding-left: 3rem; padding-right: 3rem; }
+  .brand-info__titulo { font-size: 1.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15rem; color: #000; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.1rem solid #000; }
+  .brand-info__card { display: flex; align-items: flex-start; gap: 3rem; padding-bottom: 2rem; }
+  .brand-info__logo { width: 140px; height: auto; flex-shrink: 0; }
+  .brand-info__detalhes { flex: 1; }
+  .brand-info__nome { margin: 0; font-size: 2rem; font-weight: 600; padding: 1.6rem 0; border-bottom: 0.1rem solid #000; }
+</style>
+
+{%- comment -%} CSS restante carregado de forma assíncrona {%- endcomment -%}
+<link rel="stylesheet" href="{{ 'section-brand-info.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'section-brand-info.css' | asset_url }}"></noscript>
+
+{% assign marca = product.metafields.custom.marca.value %}
+
+{% if marca %}
+  <section class="brand-info">
+    <div class="brand-info__container}">
+      <h2 class="brand-info__titulo">
+        {{ section.settings.titulo }}
+      </h2>
+
+      <div class="brand-info__card">
+        {% if marca.logo %}
+          <img
+            class="brand-info__logo"
+            src="{{ marca.logo.value | image_url: width: 200 }}"
+            alt="{{ marca.nome }}"
+            loading="lazy"
+            width="200"
+            height="200"
+          >
+        {% endif %}
+
+        <div class="brand-info__detalhes">
+          <h3 class="brand-info__nome">
+            {{ marca.nome }}
+          </h3>
+
+          {% if marca.pais_origem %}
+            <div class="brand-info__origem">
+              <strong>Origem:</strong>
+              {{ marca.pais_origem }}
+            </div>
+          {% endif %}
+
+          {% if marca.descricao %}
+            <div class="brand-info__descricao">
+              {{ marca.descricao }}
+            </div>
+          {% endif %}
+
+          {% if marca.site %}
+            <div class="brand-info__acao">
+              <a
+                href="{{ marca.site }}"
+                target="_blank"
+                rel="noopener"
+                class="brand-info__link"
+              >
+                Visitar site da marca →
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Sobre a Marca",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título da seção",
+      "default": "Sobre a Marca"
+    }
+  ],
+  "presets": [{ "name": "Sobre a Marca" }]
+}
+{% endschema %}

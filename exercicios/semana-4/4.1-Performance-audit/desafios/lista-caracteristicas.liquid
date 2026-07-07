@@ -1,0 +1,144 @@
+<section class="lista-caracteristicas">
+  <div class="lista-caracteristicas__container">
+    <h2>{{ section.settings.titulo }}</h2>
+
+    <div class="lista-caracteristicas__grid">
+      {% for block in section.blocks %}
+        <div class="lista-caracteristicas__item" {{ block.shopify_attributes }}>
+          <div class="lista-caracteristicas__icone">
+            {{ block.settings.icone }}
+          </div>
+
+          <h3>{{ block.settings.titulo }}</h3>
+          <p>{{ block.settings.descricao }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .lista-caracteristicas {
+    padding: 60px 20px;
+    background: #f7f7f7;
+  }
+
+  .lista-caracteristicas__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .lista-caracteristicas__container h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .lista-caracteristicas__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .lista-caracteristicas__item {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+  }
+
+  .lista-caracteristicas__icone {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .lista-caracteristicas__item h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .lista-caracteristicas__item p {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .lista-caracteristicas__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .lista-caracteristicas__container h2 {
+      font-size: 28px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Lista de Características",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título da seção",
+      "default": "Por que comprar conosco?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "caracteristica",
+      "name": "Característica",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icone",
+          "label": "Ícone",
+          "default": "⭐"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Qualidade garantida"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "label": "Descrição",
+          "default": "Produtos selecionados com cuidado para oferecer a melhor experiência."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lista de Características",
+      "blocks": [
+        {
+          "type": "caracteristica",
+          "settings": {
+            "icone": "🚚",
+            "titulo": "Entrega rápida",
+            "descricao": "Receba seus produtos com agilidade e segurança."
+          }
+        },
+        {
+          "type": "caracteristica",
+          "settings": {
+            "icone": "🔒",
+            "titulo": "Compra segura",
+            "descricao": "Seu pedido protegido do início ao fim."
+          }
+        },
+        {
+          "type": "caracteristica",
+          "settings": {
+            "icone": "⭐",
+            "titulo": "Qualidade garantida",
+            "descricao": "Produtos selecionados para a melhor experiência."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
