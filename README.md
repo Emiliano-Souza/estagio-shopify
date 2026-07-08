@@ -41,13 +41,43 @@ estagio-shopify/
 │   │   ├── snippets/
 │   │   │   └── product-card.liquid
 │   │   └── quando-usar-IA-liquid.md
-│   └── semana-3/
-│       ├── hero-banner.liquid
-│       ├── section-hero-banner.css
-│       ├── product-extra-info.liquid
-│       ├── section-product-extra-info.css
-│       ├── brand-info.liquid
-│       └── section-brand-info.liquid
+│   ├── semana-3/
+│   │   ├── hero-banner.liquid
+│   │   ├── section-hero-banner.css
+│   │   ├── product-extra-info.liquid
+│   │   ├── section-product-extra-info.css
+│   │   ├── brand-info.liquid
+│   │   └── section-brand-info.css
+│   └── semana-4/
+│       └── 4.1-Performance-audit/
+│           ├── dawn/
+│           │   ├── featured-product.liquid
+│           │   ├── main-article.liquid
+│           │   ├── main-list-collections.liquid
+│           │   ├── main-product.liquid
+│           │   ├── main-search.liquid
+│           │   ├── password.liquid
+│           │   └── theme.liquid
+│           ├── desafios/
+│           │   ├── banner-destaque.liquid
+│           │   ├── brand-info.liquid
+│           │   ├── exercicio-liquid-basico.liquid
+│           │   ├── exercicio-product-grid.liquid
+│           │   ├── exercicios-filtros.liquid
+│           │   ├── hero-banner.liquid
+│           │   ├── lista-caracteristicas.liquid
+│           │   ├── pratica-filtros.liquid
+│           │   ├── product-extra-info.liquid
+│           │   ├── section-brand-info.css
+│           │   ├── section-hero-banner.css
+│           │   └── section-product-extra-info.css
+│           └── docs/
+│               ├── antes_inicial.png
+│               ├── antes_produto.png
+│               ├── depois_inicial.png
+│               ├── depois_produto.png
+│               ├── PERFORMANCE-REPORT.md
+│               └── theme_check.png
 ├── .gitignore
 └── README.md
 ```
@@ -293,6 +323,42 @@ Arquivos relacionados:
 - `semana-3/section-product-extra-info.css`
 - `semana-3/section-brand-info.css`
 
+---
+
+## ✅ Semana 4 — Performance e Auditoria de Tema
+
+Durante a Semana 4, o foco foi auditar e otimizar a performance das sections customizadas do tema Dawn.
+
+---
+
+### Desafio 4.1 — Performance Audit
+
+Neste desafio, foi realizada uma auditoria completa de performance nas sections customizadas, identificando e corrigindo problemas de carregamento, renderização e boas práticas do Theme Check.
+
+Otimizações implementadas:
+
+- Lazy loading em todas as imagens fora do fold
+- `loading="eager"` na imagem acima do fold do Hero Banner
+- Dimensões reais (`width` e `height`) nas imagens para evitar CLS
+- Critical CSS inline nas sections `hero-banner`, `brand-info` e `product-extra-info`
+- Carregamento assíncrono dos arquivos CSS externos via `media="print"` + `onload`
+- `limit` adicionado em loops Liquid para evitar iteração irrestrita
+- Correção de warnings do Theme Check (arquivo `banner-destaque.liquid` movido para `sections/`)
+- Auditoria das sections nativas do Dawn (`theme.liquid`, `main-product.liquid`, etc.)
+
+Arquivos relacionados:
+
+- `exercicios/semana-4/4.1-Performance-audit/desafios/banner-destaque.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/desafios/lista-caracteristicas.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/desafios/pratica-filtros.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/desafios/hero-banner.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/desafios/brand-info.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/desafios/product-extra-info.liquid`
+- `exercicios/semana-4/4.1-Performance-audit/docs/PERFORMANCE-REPORT.md`
+- `exercicios/semana-4/4.1-Performance-audit/dawn/`
+
+---
+
 ## 🛠️ Tecnologias utilizadas
 
 - JavaScript
@@ -324,6 +390,7 @@ exercicio/1.3-com-sem-ia
 exercicio/2.1-liquid-basico
 exercicio/2.2-filtros-condicionais
 exercicio/2.3-snippet-reutilizavel
+exercicio/4.1-performance-audit
 ```
 
 ## 📝 Padrão de commits
@@ -350,6 +417,7 @@ feat: criar section de exercício Liquid básico
 feat: criar section com filtros e condicionais Liquid
 feat: criar snippet product-card e section de grade de produtos
 chore: adicionar gitignore
+perf: auditoria de performance — lazy loading, critical CSS, Theme Check e sections da semana 4
 ```
 
 ## 🚀 Como executar os arquivos JavaScript
@@ -404,9 +472,9 @@ O repositório contém:
 
 Durante a Sprint 1, foram praticados conceitos importantes para o desenvolvimento profissional, como organização de código, versionamento, revisão de código, análise crítica de soluções geradas por IA e escrita de documentação.
 
-Na Semana 1, o foco foi Git, GitHub, JavaScript e uso crítico de IA. Na Semana 2, o foco foi Shopify, Liquid e criação de componentes reutilizáveis em temas.
+Na Semana 1, o foco foi Git, GitHub, JavaScript e uso crítico de IA. Na Semana 2, o foco foi Shopify, Liquid e criação de componentes reutilizáveis em temas. Na Semana 3, o foco foi personalização avançada com metafields, metaobjects e blocos dinâmicos. Na Semana 4, o foco foi performance e auditoria de tema.
 
-O principal aprendizado foi que ferramentas de IA podem acelerar o desenvolvimento, mas o código gerado sempre precisa ser revisado, testado e ajustado de acordo com os requisitos do problema. Também foi possível entender melhor como temas Shopify são organizados e como sections e snippets ajudam a criar uma estrutura mais modular e reutilizável.
+O principal aprendizado foi que ferramentas de IA podem acelerar o desenvolvimento, mas o código gerado sempre precisa ser revisado, testado e ajustado de acordo com os requisitos do problema. Também foi possível entender melhor como temas Shopify são organizados e como sections e snippets ajudam a criar uma estrutura mais modular e reutilizável. Na Semana 4, ficou claro que performance não é um detalhe — lazy loading, critical CSS e boas práticas do Theme Check fazem diferença real na experiência do usuário.
 
 ## 👤 Autor
 
