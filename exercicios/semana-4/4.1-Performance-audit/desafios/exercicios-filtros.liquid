@@ -80,7 +80,7 @@
     <p>Total de produtos: {{ colecao.products.size }}</p>
 
     <div class="produtos-container">
-      {% for produto in colecao.products %}
+      {% for produto in colecao.products limit: 50 %}
         {% assign esta_em_promocao = false %}
 
         {% if produto.compare_at_price > produto.price %}
@@ -93,8 +93,8 @@
             <img
               src="{{ produto.featured_image | image_url: width: 300 }}"
               alt="{{ produto.title }}"
-              width="300"
-              height="300"
+              width="{{ produto.featured_image.width }}"
+              height="{{ produto.featured_image.height }}"
               loading="lazy"
             >
           {% endif %}

@@ -1,0 +1,121 @@
+<section
+  class="banner-destaque"
+  style="
+    min-height: {{ section.settings.altura }}px;
+    color: {{ section.settings.cor_texto }};
+    background-image: url('{{ section.settings.imagem | image_url: width: 1600 }}');
+  "
+>
+  <div class="banner-destaque__conteudo">
+    <h2>{{ section.settings.titulo }}</h2>
+    <p>{{ section.settings.subtitulo }}</p>
+
+    {% if section.settings.texto_botao != blank and section.settings.link_botao != blank %}
+      <a href="{{ section.settings.link_botao }}" class="banner-destaque__botao">
+        {{ section.settings.texto_botao }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .banner-destaque {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 40px 20px;
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+  }
+
+  .banner-destaque__conteudo {
+    max-width: 700px;
+  }
+
+  .banner-destaque__conteudo h2 {
+    font-size: 50px;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  .banner-destaque__conteudo p {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .banner-destaque__botao {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .banner-destaque__conteudo h2 {
+      font-size: 28px;
+    }
+
+    .banner-destaque__conteudo p {
+      font-size: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Banner de Destaque",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "imagem",
+      "label": "Imagem de fundo"
+    },
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Nova coleção disponível"
+    },
+    {
+      "type": "text",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "default": "Conheça nossos produtos em destaque."
+    },
+    {
+      "type": "text",
+      "id": "texto_botao",
+      "label": "Texto do botão",
+      "default": "Ver produtos"
+    },
+    {
+      "type": "url",
+      "id": "link_botao",
+      "label": "Link do botão"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto",
+      "label": "Cor do texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "altura",
+      "label": "Altura do banner",
+      "min": 300,
+      "max": 800,
+      "step": 50,
+      "default": 500
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner de Destaque"
+    }
+  ]
+}
+{% endschema %}

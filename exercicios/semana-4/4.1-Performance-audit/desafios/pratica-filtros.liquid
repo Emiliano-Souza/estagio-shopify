@@ -1,0 +1,159 @@
+<section class="pratica-filtros">
+  <div class="pratica-filtros__container">
+    <h2>{{ section.settings.titulo }}</h2>
+    <p>Coleção selecionada: {{ section.settings.colecao.title }}</p>
+
+    <p>Quantidade de produtos na coleção: {{ section.settings.colecao.products.size }}</p>
+
+    {% if section.settings.colecao != blank %}
+      <div class="pratica-filtros__grid">
+        {% for product in section.settings.colecao.products limit: section.settings.limite %}
+          <div class="pratica-filtros__card">
+            {% if product.featured_image %}
+              <img
+                src="{{ product.featured_image | image_url: width: 400 }}"
+                alt="{{ product.title }}"
+                width="{{ product.featured_image.width }}"
+                height="{{ product.featured_image.height }}"
+                loading="lazy"
+              >
+            {% endif %}
+
+            <h3>{{ product.title }}</h3>
+
+            <p>
+              {{ product.description | strip_html | truncate: 80 }}
+            </p>
+
+            <strong>{{ product.price | money }}</strong>
+
+            {% if product.compare_at_price > product.price %}
+              <span class="pratica-filtros__promocao"> Em promoção! </span>
+            {% endif %}
+
+            {% unless product.available %}
+              <span class="pratica-filtros__esgotado"> Esgotado </span>
+            {% endunless %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>Selecione uma coleção no editor da Shopify.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .pratica-filtros {
+    padding: 60px 20px;
+  }
+
+  .pratica-filtros__esgotado {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    background: #777;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+
+  .pratica-filtros__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .pratica-filtros__container h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .pratica-filtros__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .pratica-filtros__card {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+  }
+
+  .pratica-filtros__card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+
+  .pratica-filtros__card h3 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .pratica-filtros__card p {
+    font-size: 16px;
+    color: #555;
+  }
+
+  .pratica-filtros__card strong {
+    display: block;
+    margin-top: 12px;
+    font-size: 18px;
+  }
+
+  .pratica-filtros__promocao {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    background: #000;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .pratica-filtros__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pratica-filtros__container h2 {
+      font-size: 28px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Prática de Filtros",
+  "settings": [
+    {
+      "type": "text",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Produtos em destaque"
+    },
+    {
+      "type": "collection",
+      "id": "colecao",
+      "label": "Coleção"
+    },
+    {
+      "type": "range",
+      "id": "limite",
+      "label": "Quantidade de produtos",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "Prática de Filtros"
+    }
+  ]
+}
+{% endschema %}

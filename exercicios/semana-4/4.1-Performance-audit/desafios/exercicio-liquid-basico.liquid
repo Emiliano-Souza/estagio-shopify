@@ -1,6 +1,6 @@
 {% comment %}
   Exercício 2.1 — Liquid Básico
-  Estagiário: Emiliano Ferreira de Souza Junior
+  Estagiário: [seu nome]
 {% endcomment %}
 {% schema %}
 {
@@ -99,8 +99,8 @@
           <img
             src="{{ product.featured_image | image_url: width: 300 }}"
             alt="{{ product.title }}"
-            width="300"
-            height="300"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
             loading="lazy"
           >
         {% endif %}
@@ -110,7 +110,7 @@
     {% endfor %}
   </div>
 
-  {% if section.settings.texto_botao != blank %}
+  {% if section.settings.texto_botao and section.settings.link_botao != blank %}
     <div class="botao-container">
       <a href="{{ section.settings.link_botao | default: '/collections/all' }}" class="botao-produtos">
         {{ section.settings.texto_botao }}
