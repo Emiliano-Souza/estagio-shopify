@@ -1,0 +1,239 @@
+{{ '4-2-beneficios-produto.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="BeneficiosProduto-{{ section.id }}"
+  class="beneficios-produto"
+  {% if section.settings.titulo != blank %}
+    aria-labelledby="BeneficiosProdutoTitulo-{{ section.id }}"
+  {% endif %}
+  style="
+    --beneficios-produto-cor-fundo: {{ section.settings.cor_fundo }};
+    --beneficios-produto-cor-card: {{ section.settings.cor_card }};
+    --beneficios-produto-cor-texto-externo: {{ section.settings.cor_texto_externo }};
+    --beneficios-produto-cor-texto-card: {{ section.settings.cor_texto_card }};
+    --beneficios-produto-cor-borda: {{ section.settings.cor_borda }};
+    --beneficios-produto-borda-espessura: {{ section.settings.espessura_borda }}px;
+    --beneficios-produto-borda-raio: {{ section.settings.raio_borda }}px;
+    --beneficios-produto-espaco-superior: {{ section.settings.espaco_superior }}px;
+    --beneficios-produto-espaco-inferior: {{ section.settings.espaco_inferior }}px;
+  "
+>
+  <div class="beneficios-produto__container page-width">
+    {% if section.settings.titulo != blank or section.settings.subtitulo != blank %}
+      <header class="beneficios-produto__header">
+        {% if section.settings.titulo != blank %}
+          <h2
+            id="BeneficiosProdutoTitulo-{{ section.id }}"
+            class="beneficios-produto__titulo"
+          >
+            {{ section.settings.titulo }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subtitulo != blank %}
+          <div class="beneficios-produto__subtitulo rte">
+            {{ section.settings.subtitulo }}
+          </div>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="beneficios-produto__grid" role="list">
+        {% for block in section.blocks %}
+          <article
+            class="beneficios-produto__card"
+            role="listitem"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.icone != blank %}
+              <div class="beneficios-produto__icone">
+                {{
+                  block.settings.icone
+                  | image_url: width: 112
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '56, 84, 112',
+                    sizes: '56px',
+                    width: 56,
+                    height: 56,
+                    class: 'beneficios-produto__imagem',
+                    alt: ''
+                }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.titulo != blank %}
+              <h3 class="beneficios-produto__nome">
+                {{ block.settings.titulo }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.texto != blank %}
+              <div class="beneficios-produto__texto rte">
+                {{ block.settings.texto }}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Benefícios do produto",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Benefícios dos nossos chás"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "default": "<p>Uma seleção pensada para unir sabor, cuidado e qualidade em cada xícara.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Cores da seção"
+    },
+    {
+      "type": "color",
+      "id": "cor_fundo",
+      "label": "Cor de fundo da seção",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto_externo",
+      "label": "Cor do título e subtítulo",
+      "default": "#1F2A24"
+    },
+    {
+      "type": "header",
+      "content": "Aparência dos cards"
+    },
+    {
+      "type": "color",
+      "id": "cor_card",
+      "label": "Cor de fundo dos cards",
+      "default": "#F7FAF4"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto_card",
+      "label": "Cor dos textos dentro dos cards",
+      "default": "#1F2A24"
+    },
+    {
+      "type": "color",
+      "id": "cor_borda",
+      "label": "Cor da borda dos cards",
+      "default": "#D8E0D8"
+    },
+    {
+      "type": "range",
+      "id": "espessura_borda",
+      "label": "Espessura da borda",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "raio_borda",
+      "label": "Arredondamento dos cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento da seção"
+    },
+    {
+      "type": "range",
+      "id": "espaco_superior",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "espaco_inferior",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "beneficio",
+      "name": "Benefício",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icone",
+          "label": "Ícone"
+        },
+        {
+          "type": "text",
+          "id": "titulo",
+          "label": "Título",
+          "default": "Ingredientes selecionados"
+        },
+        {
+          "type": "richtext",
+          "id": "texto",
+          "label": "Descrição",
+          "default": "<p>Ingredientes escolhidos com cuidado para oferecer qualidade e sabor.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefícios do produto",
+      "blocks": [
+        {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "Ingredientes selecionados",
+            "texto": "<p>Ingredientes escolhidos com cuidado para oferecer qualidade e sabor.</p>"
+          }
+        },
+        {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "Preparo simples",
+            "texto": "<p>Uma experiência prática para aproveitar seu chá todos os dias.</p>"
+          }
+        },
+        {
+          "type": "beneficio",
+          "settings": {
+            "titulo": "Aroma e frescor",
+            "texto": "<p>Embalagens pensadas para preservar as características naturais do produto.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
