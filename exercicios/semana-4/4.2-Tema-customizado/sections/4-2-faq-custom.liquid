@@ -1,0 +1,234 @@
+{{ '4-2-faq-custom.css' | asset_url | stylesheet_tag }}
+
+<script
+  src="{{ '4-2-faq-custom.js' | asset_url }}"
+  defer
+></script>
+
+<section
+  id="FaqCustom-{{ section.id }}"
+  class="faq-custom"
+  {% if section.settings.titulo != blank %}
+    aria-labelledby="FaqCustomTitulo-{{ section.id }}"
+  {% endif %}
+  style="
+    --faq-bg: {{ section.settings.cor_fundo }};
+    --faq-card-bg: {{ section.settings.cor_card }};
+    --faq-text: {{ section.settings.cor_texto }};
+    --faq-padding-top: {{ section.settings.espaco_superior }}px;
+    --faq-padding-bottom: {{ section.settings.espaco_inferior }}px;
+    --faq-max-width: {{ section.settings.largura_maxima }}px;
+  "
+>
+  <div class="faq-custom__container page-width">
+    {% if section.settings.titulo != blank or section.settings.subtitulo != blank %}
+      <header class="faq-custom__header">
+        {% if section.settings.titulo != blank %}
+          <h2
+            id="FaqCustomTitulo-{{ section.id }}"
+            class="faq-custom__title"
+          >
+            {{ section.settings.titulo }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subtitulo != blank %}
+          <div class="faq-custom__subtitle rte">
+            {{ section.settings.subtitulo }}
+          </div>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div
+        class="faq-custom__accordion"
+        aria-label="Perguntas frequentes"
+      >
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'categoria' %}
+              {% if block.settings.titulo_categoria != blank %}
+                <h3
+                  class="faq-custom__categoria"
+                  {{ block.shopify_attributes }}
+                >
+                  {{ block.settings.titulo_categoria }}
+                </h3>
+              {% endif %}
+
+            {% when 'faq_item' %}
+              {% if block.settings.pergunta != blank %}
+                <details
+                  class="faq-custom__item"
+                  id="FaqItem-{{ block.id }}"
+                  {{ block.shopify_attributes }}
+                >
+                  <summary class="faq-custom__summary">
+                    <span class="faq-custom__question">
+                      {{ block.settings.pergunta }}
+                    </span>
+
+                    <span
+                      class="faq-custom__icon"
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </summary>
+
+                  {% if block.settings.resposta != blank %}
+                    <div class="faq-custom__content rte">
+                      {{ block.settings.resposta }}
+                    </div>
+                  {% endif %}
+                </details>
+              {% endif %}
+          {% endcase %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "FAQ Custom",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Perguntas frequentes"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "default": "<p>Tire suas dúvidas sobre nossos chás e descubra como aproveitar a melhor experiência.</p>"
+    },
+    {
+      "type": "color",
+      "id": "cor_fundo",
+      "label": "Cor de fundo",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cor_card",
+      "label": "Cor dos cards",
+      "default": "#F7FAF4"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto",
+      "label": "Cor do texto",
+      "default": "#1F2937"
+    },
+    {
+      "type": "range",
+      "id": "largura_maxima",
+      "label": "Largura máxima",
+      "min": 800,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "espaco_superior",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "espaco_inferior",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "categoria",
+      "name": "Categoria",
+      "settings": [
+        {
+          "type": "text",
+          "id": "titulo_categoria",
+          "label": "Título da categoria",
+          "default": "Preparação"
+        }
+      ]
+    },
+    {
+      "type": "faq_item",
+      "name": "Pergunta",
+      "settings": [
+        {
+          "type": "text",
+          "id": "pergunta",
+          "label": "Pergunta",
+          "default": "Como preparar o chá corretamente?"
+        },
+        {
+          "type": "richtext",
+          "id": "resposta",
+          "label": "Resposta",
+          "default": "<p>Aqueça a água na temperatura indicada, adicione a quantidade recomendada e deixe em infusão pelo tempo sugerido.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Custom",
+      "blocks": [
+        {
+          "type": "categoria",
+          "settings": {
+            "titulo_categoria": "Preparação"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "pergunta": "Como preparar o chá?",
+            "resposta": "<p>Utilize água entre 80 °C e 90 °C e deixe em infusão pelo tempo recomendado.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "pergunta": "Qual é o tempo de infusão?",
+            "resposta": "<p>O tempo varia conforme o tipo de chá, normalmente entre 3 e 5 minutos.</p>"
+          }
+        },
+        {
+          "type": "categoria",
+          "settings": {
+            "titulo_categoria": "Armazenamento"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "pergunta": "Como armazenar o chá?",
+            "resposta": "<p>Guarde em recipiente hermético, em local seco, fresco e protegido da luz.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

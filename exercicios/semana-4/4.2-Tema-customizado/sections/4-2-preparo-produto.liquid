@@ -1,0 +1,334 @@
+{{ '4-2-preparo-produto.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="PreparoProduto-{{ section.id }}"
+  class="preparo-produto"
+  {% if section.settings.titulo != blank %}
+    aria-labelledby="PreparoProdutoTitulo-{{ section.id }}"
+  {% endif %}
+  style="
+    --preparo-produto-cor-fundo: {{ section.settings.cor_fundo }};
+    --preparo-produto-cor-card: {{ section.settings.cor_card }};
+    --preparo-produto-cor-texto-externo: {{ section.settings.cor_texto_externo }};
+    --preparo-produto-cor-texto-card: {{ section.settings.cor_texto_card }};
+    --preparo-produto-cor-destaque: {{ section.settings.cor_destaque }};
+    --preparo-produto-cor-borda: {{ section.settings.cor_borda }};
+    --preparo-produto-borda-espessura: {{ section.settings.espessura_borda }}px;
+    --preparo-produto-borda-raio: {{ section.settings.raio_borda }}px;
+    --preparo-produto-padding-card: {{ section.settings.padding_card }}px;
+    --preparo-produto-gap: {{ section.settings.espaco_cards }}px;
+    --preparo-produto-espaco-superior: {{ section.settings.espaco_superior }}px;
+    --preparo-produto-espaco-inferior: {{ section.settings.espaco_inferior }}px;
+  "
+>
+  <div class="preparo-produto__container page-width">
+    {% if section.settings.titulo != blank or section.settings.subtitulo != blank %}
+      <header class="preparo-produto__header">
+        {% if section.settings.titulo != blank %}
+          <h2
+            id="PreparoProdutoTitulo-{{ section.id }}"
+            class="preparo-produto__titulo"
+          >
+            {{ section.settings.titulo }}
+          </h2>
+        {% endif %}
+
+        {% if section.settings.subtitulo != blank %}
+          <div class="preparo-produto__subtitulo rte">
+            {{ section.settings.subtitulo }}
+          </div>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="preparo-produto__grid" role="list">
+        {% for block in section.blocks %}
+          {%- liquid
+            assign valor_exibido = block.settings.valor
+
+            if product != blank
+              case block.settings.fonte_valor
+                when 'temperatura_preparo'
+                  if product.metafields.custom.temperatura_preparo != blank
+                    assign valor_exibido = product.metafields.custom.temperatura_preparo.value
+                  endif
+
+                when 'tempo_infusao'
+                  if product.metafields.custom.tempo_infusao != blank
+                    assign valor_exibido = product.metafields.custom.tempo_infusao.value
+                  endif
+
+                when 'quantidade_recomendada'
+                  if product.metafields.custom.quantidade_recomendada != blank
+                    assign valor_exibido = product.metafields.custom.quantidade_recomendada.value
+                  endif
+              endcase
+            endif
+          -%}
+
+          <article
+            class="preparo-produto__card"
+            role="listitem"
+            {{ block.shopify_attributes }}
+          >
+            {% if block.settings.icone != blank %}
+              <div class="preparo-produto__icone">
+                {{
+                  block.settings.icone
+                  | image_url: width: 96
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '48, 72, 96',
+                    sizes: '48px',
+                    width: 48,
+                    height: 48,
+                    class: 'preparo-produto__imagem',
+                    alt: ''
+                }}
+              </div>
+            {% endif %}
+
+            {% if block.settings.nome_etapa != blank %}
+              <h3 class="preparo-produto__nome">
+                {{ block.settings.nome_etapa }}
+              </h3>
+            {% endif %}
+
+            {% if valor_exibido != blank %}
+              <p class="preparo-produto__valor">
+                {{ valor_exibido }}
+              </p>
+            {% endif %}
+
+            {% if block.settings.descricao != blank %}
+              <div class="preparo-produto__descricao">
+                {{ block.settings.descricao | escape | newline_to_br }}
+              </div>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Preparo do produto",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "titulo",
+      "label": "Título",
+      "default": "Como preparar seu chá"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitulo",
+      "label": "Subtítulo",
+      "default": "<p>Consulte as recomendações específicas deste produto para obter o melhor aroma e sabor.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Cores da seção"
+    },
+    {
+      "type": "color",
+      "id": "cor_fundo",
+      "label": "Cor de fundo da seção",
+      "default": "#F7FAF4"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto_externo",
+      "label": "Cor do título e subtítulo",
+      "default": "#1F2A24"
+    },
+    {
+      "type": "header",
+      "content": "Aparência dos cards"
+    },
+    {
+      "type": "color",
+      "id": "cor_card",
+      "label": "Cor de fundo dos cards",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "cor_texto_card",
+      "label": "Cor dos textos dentro dos cards",
+      "default": "#1F2A24"
+    },
+    {
+      "type": "color",
+      "id": "cor_destaque",
+      "label": "Cor do valor em destaque",
+      "default": "#2F6B4F"
+    },
+    {
+      "type": "color",
+      "id": "cor_borda",
+      "label": "Cor da borda dos cards",
+      "default": "#D8E0D8"
+    },
+    {
+      "type": "range",
+      "id": "espessura_borda",
+      "label": "Espessura da borda",
+      "min": 0,
+      "max": 8,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "raio_borda",
+      "label": "Arredondamento dos cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_card",
+      "label": "Espaçamento interno dos cards",
+      "min": 12,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "espaco_cards",
+      "label": "Espaço entre os cards",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento da seção"
+    },
+    {
+      "type": "range",
+      "id": "espaco_superior",
+      "label": "Espaçamento superior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "espaco_inferior",
+      "label": "Espaçamento inferior",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    }
+  ],
+  "blocks": [
+    {
+      "type": "etapa",
+      "name": "Etapa",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icone",
+          "label": "Ícone"
+        },
+        {
+          "type": "text",
+          "id": "nome_etapa",
+          "label": "Nome da etapa",
+          "default": "Temperatura"
+        },
+        {
+          "type": "select",
+          "id": "fonte_valor",
+          "label": "Fonte do valor",
+          "options": [
+            {
+              "value": "manual",
+              "label": "Valor manual"
+            },
+            {
+              "value": "temperatura_preparo",
+              "label": "Metafield: temperatura de preparo"
+            },
+            {
+              "value": "tempo_infusao",
+              "label": "Metafield: tempo de infusão"
+            },
+            {
+              "value": "quantidade_recomendada",
+              "label": "Metafield: quantidade recomendada"
+            }
+          ],
+          "default": "manual"
+        },
+        {
+          "type": "text",
+          "id": "valor",
+          "label": "Valor manual ou valor de reserva",
+          "info": "Este valor será exibido quando o metafield selecionado estiver vazio.",
+          "default": "80 °C"
+        },
+        {
+          "type": "textarea",
+          "id": "descricao",
+          "label": "Descrição",
+          "default": "Utilize a recomendação adequada para preservar o sabor do chá."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Preparo do produto",
+      "blocks": [
+        {
+          "type": "etapa",
+          "settings": {
+            "nome_etapa": "Quantidade recomendada",
+            "fonte_valor": "quantidade_recomendada",
+            "valor": "1 colher de chá para 200 ml",
+            "descricao": "Utilize a proporção indicada para obter uma bebida equilibrada."
+          }
+        },
+        {
+          "type": "etapa",
+          "settings": {
+            "nome_etapa": "Temperatura da água",
+            "fonte_valor": "temperatura_preparo",
+            "valor": "80 °C",
+            "descricao": "A temperatura correta ajuda a evitar amargor excessivo."
+          }
+        },
+        {
+          "type": "etapa",
+          "settings": {
+            "nome_etapa": "Tempo de infusão",
+            "fonte_valor": "tempo_infusao",
+            "valor": "3 a 5 minutos",
+            "descricao": "Respeite o tempo recomendado para preservar o aroma e o sabor."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
