@@ -1,4 +1,4 @@
-# Estágio Shopify
+# Estágio AIR
 
 Repositório criado para armazenar os exercícios, desafios e atividades práticas desenvolvidos durante o programa de estágio/bootcamp da AI/R, com foco em desenvolvimento web, Git, GitHub, JavaScript, Shopify, Liquid e boas práticas de programação.
 
