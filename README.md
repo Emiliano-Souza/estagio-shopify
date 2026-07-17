@@ -91,7 +91,20 @@ bootcamp-2-ecommerce/
 │       │   ├── helloworld.html
 │       │   └── HelloWorldModel.java
 │       │
-│       └── 5.2-components/
+│       └── 5.2-componente-cartao-perfil/
+│           ├── docs/
+│           │   ├── componente-no-painel.png
+│           │   ├── dialog-perfil.png
+│           │   ├── pagina-desafio.png
+│           │   ├── perfil-com-cargo.png
+│           │   └── perfil-sem-cargo.png
+│           ├── models/
+│           │   └── PerfilModel.java
+│           └── perfil/
+│               ├── .content.xml
+│               ├── perfil.html
+│               └── _cq_dialog/
+│                   └── .content.xml
 │
 ├── .gitignore
 └── README.md
@@ -99,7 +112,7 @@ bootcamp-2-ecommerce/
 
 > Os arquivos foram organizados por semana e por desafio para facilitar a avaliação.
 
-> Os arquivos presentes em `exercicios/semana-5/5.1-helloworld-subtitle` representam as partes modificadas do projeto WKND original. O projeto AEM completo permanece no ambiente local de desenvolvimento.
+> Os arquivos presentes nos diretórios dos desafios 5.1 e 5.2 representam as partes criadas ou modificadas no projeto WKND original. O projeto AEM completo permanece no ambiente local de desenvolvimento.
 
 ---
 
@@ -611,7 +624,291 @@ Subtítulo: Vamos começar.
 - Deploy de bundles OSGi
 - Renderização condicional com `data-sly-test`
 
-# Tecnologias utilizadas
+#### Componente renderizado
+
+![HelloWorld renderizado](exercicios/semana-5/5.1-helloworld-subtitle/docs/helloworld-renderizado.png)
+
+### Principais aprendizados
+
+## Desafio 5.2 — Componente Cartão de Perfil
+
+O objetivo do desafio foi criar um componente AEM do zero, sem herdar de Core Component, para compreender a estrutura mínima necessária:
+
+```text
+nó do componente → Dialog Touch UI → Sling Model → HTL
+```
+
+Foi criado o componente **Cartão de Perfil**, com os campos:
+
+- Nome
+- Cargo
+- Biografia
+
+O campo **Cargo** é opcional e deixa de ser renderizado quando está vazio.
+
+### Atividades realizadas
+
+- Criação do componente em `/apps/wknd/components/perfil`
+- Definição de `jcr:title`
+- Definição de `componentGroup`
+- Criação do Dialog Touch UI
+- Criação dos campos Nome, Cargo e Biografia
+- Persistência das propriedades no JCR
+- Criação do `PerfilModel`
+- Uso de `@ValueMapValue`
+- Criação dos getters
+- Carregamento do Model pelo HTL
+- Renderização dos valores na página
+- Uso de `data-sly-test` para ocultar o cargo vazio
+- Deploy dos módulos `core` e `ui.apps`
+- Criação da página `Desafio 5.2`
+- Validação do componente no AEM Author
+
+### Estrutura do componente
+
+```text
+5.2-componente-cartao-perfil/
+├── docs/
+│   ├── componente-no-painel.png
+│   ├── dialog-perfil.png
+│   ├── pagina-desafio.png
+│   ├── perfil-com-cargo.png
+│   └── perfil-sem-cargo.png
+├── models/
+│   └── PerfilModel.java
+└── perfil/
+    ├── .content.xml
+    ├── perfil.html
+    └── _cq_dialog/
+        └── .content.xml
+```
+
+### Definição do componente
+
+O componente foi registrado com:
+
+```xml
+<jcr:root
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Component"
+    jcr:title="Cartão de Perfil"
+    componentGroup="WKND.Content"/>
+```
+
+A propriedade:
+
+```xml
+jcr:primaryType="cq:Component"
+```
+
+identifica o nó como um componente AEM.
+
+O título apresentado ao autor é definido por:
+
+```xml
+jcr:title="Cartão de Perfil"
+```
+
+O grupo no painel de componentes é definido por:
+
+```xml
+componentGroup="WKND.Content"
+```
+
+O componente foi criado sem `sling:resourceSuperType`, portanto não herda comportamento de Core Component.
+
+### Implementação do Dialog
+
+O Dialog Touch UI possui os campos Nome, Cargo e Biografia.
+
+As propriedades são salvas no nó da instância do componente por meio de:
+
+```xml
+name="./nome"
+name="./cargo"
+name="./bio"
+```
+
+O campo Nome foi definido como obrigatório:
+
+```xml
+required="{Boolean}true"
+```
+
+A Biografia utiliza um campo de múltiplas linhas:
+
+```xml
+sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+```
+
+Os valores configurados em `emptyText` funcionam apenas como orientação visual no formulário e não são armazenados no JCR.
+
+### Implementação do Sling Model
+
+O `PerfilModel` foi adaptado a partir de um `Resource` e associado ao componente:
+
+```java
+@Model(
+    adaptables = Resource.class,
+    resourceType = PerfilModel.RESOURCE_TYPE,
+    defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
+)
+public class PerfilModel {
+```
+
+O tipo do componente foi centralizado em:
+
+```java
+public static final String RESOURCE_TYPE = "wknd/components/perfil";
+```
+
+As propriedades são injetadas com:
+
+```java
+@ValueMapValue
+private String nome;
+
+@ValueMapValue
+private String cargo;
+
+@ValueMapValue
+private String bio;
+```
+
+Os valores são disponibilizados por meio dos getters:
+
+```java
+public String getNome() {
+    return nome;
+}
+
+public String getCargo() {
+    return cargo;
+}
+
+public String getBio() {
+    return bio;
+}
+```
+
+A estratégia `OPTIONAL` permite que o Model continue funcionando quando Cargo ou Biografia não forem preenchidos.
+
+### Implementação no HTL
+
+O Model é carregado no `perfil.html` por:
+
+```html
+data-sly-use.perfil="com.adobe.aem.guides.wknd.core.models.PerfilModel"
+```
+
+Os valores são exibidos com:
+
+```html
+${perfil.nome}
+${perfil.cargo}
+${perfil.bio}
+```
+
+O cargo é renderizado de forma condicional:
+
+```html
+<p
+    class="cmp-perfil__cargo"
+    data-sly-test="${perfil.cargo}">
+    ${perfil.cargo}
+</p>
+```
+
+Quando `perfil.cargo` está vazio ou ausente, a tag `<p>` não é incluída no HTML final.
+
+### Deploy
+
+O Sling Model foi compilado e instalado com:
+
+```powershell
+mvn -pl core install -PautoInstallBundle
+```
+
+O componente, o Dialog e o HTL foram instalados com:
+
+```powershell
+mvn -pl ui.apps install -PautoInstallPackage
+```
+
+### Página criada no Author
+
+Foi criada uma página para validar o componente:
+
+```text
+/content/wknd/us/en/desafio-5-2
+```
+
+O componente foi localizado no grupo:
+
+```text
+WKND.Content
+```
+
+e adicionado à página **Desafio 5.2**.
+
+### Testes realizados
+
+#### Cargo preenchido
+
+Foram utilizados os valores:
+
+```text
+Nome: Emiliano FS Junior.
+Cargo: Desenvolvedor AEM Estagiário.
+Biografia: Estudante do IF Goiano - Campus Ceres.
+```
+
+Os três valores foram exibidos corretamente.
+
+#### Cargo vazio
+
+O campo Cargo foi apagado e o Dialog foi salvo novamente.
+
+O Nome e a Biografia continuaram visíveis, enquanto o Cargo deixou de ser renderizado.
+
+Esse comportamento validou o uso correto de:
+
+```html
+data-sly-test="${perfil.cargo}"
+```
+
+### Arquivos relacionados
+
+- `exercicios/semana-5/5.2-componente-cartao-perfil/models/PerfilModel.java`
+- `exercicios/semana-5/5.2-componente-cartao-perfil/perfil/.content.xml`
+- `exercicios/semana-5/5.2-componente-cartao-perfil/perfil/perfil.html`
+- `exercicios/semana-5/5.2-componente-cartao-perfil/perfil/_cq_dialog/.content.xml`
+
+### Evidências
+
+#### Componente disponível no painel
+
+![Componente disponível no painel](exercicios/semana-5/5.2-componente-cartao-perfil/docs/componente-no-painel.png)
+
+#### Dialog Touch UI
+
+![Dialog do Cartão de Perfil](exercicios/semana-5/5.2-componente-cartao-perfil/docs/dialog-perfil.png)
+
+#### Página criada no Author
+
+![Página do Desafio 5.2](exercicios/semana-5/5.2-componente-cartao-perfil/docs/pagina-desafio.png)
+
+#### Perfil com cargo preenchido
+
+![Perfil com cargo](exercicios/semana-5/5.2-componente-cartao-perfil/docs/perfil-com-cargo.png)
+
+#### Perfil sem cargo
+
+![Perfil sem cargo](exercicios/semana-5/5.2-componente-cartao-perfil/docs/perfil-sem-cargo.png)
+
+# ⚙️ Informações do Projeto
+
+## Tecnologias utilizadas
 
 - JavaScript
 - HTML
@@ -657,7 +954,7 @@ exercicio/2.3-snippet-reutilizavel
 exercicio/4.1-performance-audit
 exercicio/4.2-tema-customizado
 exercicio/5.1-helloworld-subtitulo
-exercicio/5.2-componente-perfil
+exercicio/5.2-componente-cartao-perfil
 ```
 
 ---
@@ -689,6 +986,8 @@ feat: criar FAQ customizada
 feat: integrar metafields na section de preparo
 feat(helloworld): adicionar subtitulo configuravel
 docs: documentar desafio 5.1
+feat(perfil): criar componente cartao de perfil
+docs: documentar desafio 5.2
 ```
 
 ---
@@ -755,13 +1054,21 @@ http://localhost:4502
 Sites → WKND Site → United States → English
 ```
 
-## 4. Abrir a página do desafio
+## 4. Abrir uma página de desafio
+
+Desafio 5.1:
 
 ```text
 /content/wknd/us/en/desafio-5-1
 ```
 
-## 5. Editar o componente
+Desafio 5.2:
+
+```text
+/content/wknd/us/en/desafio-5-2
+```
+
+## 5. Testar o Desafio 5.1
 
 1. Selecione o HelloWorld.
 2. Clique no ícone de configuração.
@@ -770,27 +1077,16 @@ Sites → WKND Site → United States → English
 5. Clique em `Done`.
 6. Verifique o valor renderizado.
 
----
+## 6. Testar o Desafio 5.2
 
-# Como testar a responsividade
-
-No Google Chrome:
-
-1. Abra o preview.
-2. Pressione `F12`.
-3. Use `Ctrl + Shift + M`.
-4. Escolha o modo responsivo.
-5. Informe as larguras desejadas.
-
-Resoluções utilizadas:
-
-```text
-320 px
-375 px
-768 px
-1024 px
-1440 px
-```
+1. Adicione o componente `Cartão de Perfil`.
+2. Abra o Dialog.
+3. Preencha Nome, Cargo e Biografia.
+4. Clique em `Done`.
+5. Confirme a exibição dos três valores.
+6. Abra novamente o Dialog.
+7. Apague o Cargo.
+8. Salve e confirme que o Cargo não é renderizado.
 
 ---
 
@@ -816,7 +1112,7 @@ O repositório contém:
 
 ---
 
-# Aprendizados gerais
+# 📚 Aprendizados gerais
 
 Durante as atividades, foram praticados conceitos importantes para o desenvolvimento profissional.
 
@@ -839,6 +1135,18 @@ Entre os principais aprendizados estão:
 - Código Java precisa ser empacotado como bundle OSGi
 - Maven garante builds reproduzíveis
 - Documentação e evidências fazem parte da entrega
+- Estrutura mínima de um componente AEM
+- Diferença entre os módulos `core` e `ui.apps`
+- Registro de componentes com `cq:Component`
+- Criação de Dialogs Touch UI
+- Persistência de propriedades no JCR
+- Injeção com `@ValueMapValue`
+- Uso de getters no Sling Model
+- Carregamento de Model com `data-sly-use`
+- Renderização condicional com `data-sly-test`
+- Componentes AEM podem ser construídos do zero sem herança de Core Component
+- O módulo `core` concentra o código Java e o módulo `ui.apps` concentra componentes, Dialogs e HTL
+- Deploy separado de bundle OSGi e pacote de conteúdo
 
 ---
 
