@@ -624,7 +624,11 @@ Subtítulo: Vamos começar.
 - Deploy de bundles OSGi
 - Renderização condicional com `data-sly-test`
 
----
+#### Componente renderizado
+
+![HelloWorld renderizado](exercicios/semana-5/5.1-helloworld-subtitle/docs/helloworld-renderizado.png)
+
+### Principais aprendizados
 
 ## Desafio 5.2 — Componente Cartão de Perfil
 
