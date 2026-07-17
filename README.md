@@ -1,36 +1,47 @@
-# Estágio AIR
+# Estágio AI/R — Shopify e Adobe Experience Manager
 
-Repositório criado para armazenar os exercícios, desafios e atividades práticas desenvolvidos durante o programa de estágio/bootcamp da AI/R, com foco em desenvolvimento web, Git, GitHub, JavaScript, Shopify, Liquid e boas práticas de programação.
+Repositório criado para armazenar os exercícios, desafios e atividades práticas desenvolvidos durante o programa de estágio/bootcamp da AI/R.
+
+A trilha contempla fundamentos de desenvolvimento web, Git, GitHub, JavaScript, Shopify, Liquid, performance e Adobe Experience Manager — AEM.
+
+---
 
 ## 📌 Sobre o projeto
 
-Este repositório faz parte da trilha de aprendizado do estágio/bootcamp da AI/R.
+O objetivo deste repositório é registrar a evolução técnica durante o programa de estágio, reunindo código, documentação e evidências das atividades realizadas.
 
-O objetivo é praticar conceitos fundamentais de desenvolvimento, como:
+Durante as semanas do programa, foram praticados conceitos como:
 
 - Fluxo profissional com Git e GitHub
-- Criação de branches
+- Criação e gerenciamento de branches
 - Commits semânticos
 - Pull Requests
 - Code Review
 - Identificação e correção de bugs
-- Uso crítico de ferramentas de IA no desenvolvimento
+- Uso crítico de inteligência artificial
 - Desenvolvimento de temas Shopify
-- Criação de sections em Liquid
-- Uso de filtros, condicionais e loops
-- Criação de snippets reutilizáveis
-- Uso de blocks dinâmicos
-- Configuração e exibição de metafields
+- Linguagem Liquid
+- Sections e snippets reutilizáveis
+- Blocks dinâmicos
+- Metafields e metaobjects
 - Responsividade
 - Acessibilidade
 - Auditoria e otimização de performance
+- Fundamentos do Adobe Experience Manager
+- Desenvolvimento de componentes AEM
+- HTL
+- Sling Models
+- Dialogs Touch UI
+- JCR
+- Maven
+- Bundles OSGi
 
 ---
 
-## 📁 Estrutura do repositório
+# 📁 Estrutura do repositório
 
 ```text
-estagio-shopify/
+bootcamp-2-ecommerce/
 ├── exercicios/
 │   ├── semana-1/
 │   │   ├── sobre-mim.md
@@ -59,61 +70,36 @@ estagio-shopify/
 │   │   ├── brand-info.liquid
 │   │   └── section-brand-info.css
 │   │
-│   └── semana-4/
-│       ├── 4.1-Performance-audit/
-│       │   ├── dawn/
-│       │   │   ├── featured-product.liquid
-│       │   │   ├── main-article.liquid
-│       │   │   ├── main-list-collections.liquid
-│       │   │   ├── main-product.liquid
-│       │   │   ├── main-search.liquid
-│       │   │   ├── password.liquid
-│       │   │   └── theme.liquid
-│       │   ├── desafios/
-│       │   │   ├── banner-destaque.liquid
-│       │   │   ├── brand-info.liquid
-│       │   │   ├── exercicio-liquid-basico.liquid
-│       │   │   ├── exercicio-product-grid.liquid
-│       │   │   ├── exercicios-filtros.liquid
-│       │   │   ├── hero-banner.liquid
-│       │   │   ├── lista-caracteristicas.liquid
-│       │   │   ├── pratica-filtros.liquid
-│       │   │   ├── product-extra-info.liquid
-│       │   │   ├── section-brand-info.css
-│       │   │   ├── section-hero-banner.css
-│       │   │   └── section-product-extra-info.css
-│       │   └── docs/
-│       │       ├── antes_inicial.png
-│       │       ├── antes_produto.png
-│       │       ├── depois_inicial.png
-│       │       ├── depois_produto.png
-│       │       ├── PERFORMANCE-REPORT.md
-│       │       └── theme_check.png
+│   ├── semana-4/
+│   │   ├── 4.1-Performance-audit/
+│   │   │   ├── dawn/
+│   │   │   ├── desafios/
+│   │   │   └── docs/
+│   │   │
+│   │   └── 4.2-Tema-customizado/
+│   │       ├── assets/
+│   │       ├── sections/
+│   │       └── docs/
+│   │
+│   └── semana-5/
+│       ├── 5.1-helloworld-subtitle/
+│       │   ├── docs/
+│       │   │   ├── pagina-desafio-5-1.png
+│       │   │   ├── dialog-subtitulo.png
+│       │   │   └── helloworld-renderizado.png
+│       │   ├── .content.xml
+│       │   ├── helloworld.html
+│       │   └── HelloWorldModel.java
 │       │
-│       └── 4.2-Tema-customizado/
-│           ├── assets/
-│           │   ├── 4-2-beneficios-produto.css
-│           │   ├── 4-2-faq-custom.css
-│           │   ├── 4-2-faq-custom.js
-│           │   └── 4-2-preparo-produto.css
-│           ├── sections/
-│           │   ├── 4-2-beneficios-produto.liquid
-│           │   ├── 4-2-faq-custom.liquid
-│           │   └── 4-2-preparo-produto.liquid
-│           └── docs/
-│               ├── beneficios-mobile.png
-│               ├── beneficios-tablet.png
-│               ├── beneficios-desktop.png
-│               ├── faq-mobile.png
-│               ├── faq-desktop.png
-│               ├── preparo-mobile.png
-│               └── preparo-desktop.png
+│       └── 5.2-components/
 │
 ├── .gitignore
 └── README.md
 ```
 
-> Os arquivos Liquid foram organizados por semana e desafio para facilitar a avaliação. Para uso direto em um tema Shopify, os arquivos de section devem ser colocados em `sections/`, os snippets em `snippets/` e os arquivos CSS e JavaScript em `assets/`.
+> Os arquivos foram organizados por semana e por desafio para facilitar a avaliação.
+
+> Os arquivos presentes em `exercicios/semana-5/5.1-helloworld-subtitle` representam as partes modificadas do projeto WKND original. O projeto AEM completo permanece no ambiente local de desenvolvimento.
 
 ---
 
@@ -121,18 +107,18 @@ estagio-shopify/
 
 ## Desafio 1.1 — Fluxo Git Profissional
 
-Neste desafio, foram praticados os principais comandos e etapas de um fluxo profissional com Git e GitHub.
+Neste desafio, foram praticadas as principais etapas de um fluxo profissional com Git e GitHub.
 
 ### Atividades realizadas
 
 - Criação de branch a partir da `main`
-- Criação da pasta `exercicios/semana-1`
-- Criação do arquivo de apresentação pessoal
-- Implementação de uma calculadora básica em JavaScript
+- Organização dos arquivos em pastas
+- Criação de apresentação pessoal
+- Implementação de calculadora em JavaScript
 - Adição da função de porcentagem
 - Uso de commits semânticos
 - Abertura de Pull Request
-- Prática de review em código de colega
+- Revisão de código de colega
 
 ### Arquivos relacionados
 
@@ -143,22 +129,16 @@ Neste desafio, foram praticados os principais comandos e etapas de um fluxo prof
 
 ## Desafio 1.2 — Caça aos Bugs da IA
 
-Neste desafio, o foco foi desenvolver um olhar crítico sobre códigos gerados por inteligência artificial.
+O objetivo foi desenvolver um olhar crítico sobre códigos gerados por inteligência artificial.
 
-Foram analisados trechos com erros em:
+Foram analisados problemas relacionados a:
 
 - Validação de e-mail
 - Busca de produto em array
 - Cálculo de desconto
 - Formatação de preço
-
-Para cada trecho, foram descritos:
-
-- Qual era o bug
-- Por que o comportamento estava incorreto
-- Como corrigir o problema
-- Código corrigido com validações
-- Tratamento de casos extremos
+- Tratamento de valores inválidos
+- Casos extremos
 
 ### Arquivos relacionados
 
@@ -167,12 +147,9 @@ Para cada trecho, foram descritos:
 
 ---
 
-## Desafio 1.3 — Copilot: Com e Sem IA
+## Desafio 1.3 — Copilot: com e sem IA
 
-Neste desafio, foram implementadas as mesmas funções de duas formas:
-
-1. Sem uso de IA
-2. Com auxílio do GitHub Copilot
+Foram implementadas funções manualmente e com auxílio do GitHub Copilot.
 
 ### Funções implementadas
 
@@ -183,57 +160,42 @@ Neste desafio, foram implementadas as mesmas funções de duas formas:
 
 Também foi feita uma reflexão comparando:
 
-- Tempo gasto com e sem IA
+- Tempo gasto
 - Qualidade do código
+- Clareza das soluções
 - Tratamento de casos extremos
 - Aprendizado durante o processo
-- Pontos positivos e limitações do uso de IA
+- Limitações do uso de IA
 
 ### Arquivos relacionados
 
 - `exercicios/semana-1/sem-ia.js`
 - `exercicios/semana-1/com-ia.js`
 - `exercicios/semana-1/reflexao-ia.md`
-
----
-
-## Mini-doc — Quando uso e quando não uso Copilot
-
-Foi criado um documento com uma reflexão sobre o uso do GitHub Copilot durante as atividades.
-
-O documento aborda:
-
-- Situações em que o Copilot ajudou
-- Situações em que o Copilot atrapalhou
-- Cuidados ao usar IA para gerar código
-- Importância de revisar e testar o código
-- Necessidade de compreender as sugestões geradas
-
-### Arquivo relacionado
-
 - `exercicios/semana-1/quando-usar-ia.md`
 
 ---
 
 # ✅ Semana 2 — Shopify, Liquid e Temas
 
-Durante a Semana 2, foram realizados desafios para compreender a estrutura dos temas Shopify e a linguagem Liquid.
+Durante a Semana 2, o foco foi compreender a estrutura de temas Shopify e os fundamentos da linguagem Liquid.
 
-## Desafio 2.1 — Section Liquid Básica
+## Desafio 2.1 — Section Liquid básica
 
-Foi criada uma section básica em Liquid com configurações editáveis pelo editor visual da Shopify.
+Foi criada uma section configurável pelo editor visual da Shopify.
 
 ### Funcionalidades implementadas
 
-- Título configurável via `settings`
-- Descrição configurável com `richtext`
-- Loop de produtos usando uma coleção
+- Título configurável
+- Descrição em richtext
+- Seleção de coleção
+- Loop de produtos
 - Exibição de imagem, título e preço
-- Preço formatado com o filtro `money`
+- Uso do filtro `money`
 - Controle da quantidade de produtos
 - Alternância entre grade e lista
 - Cor de fundo configurável
-- Botão “Ver todos os produtos”
+- Botão para visualizar todos os produtos
 
 ### Arquivo relacionado
 
@@ -241,22 +203,23 @@ Foi criada uma section básica em Liquid com configurações editáveis pelo edi
 
 ---
 
-## Desafio 2.2 — Filtros e Condicionais Liquid
+## Desafio 2.2 — Filtros e condicionais Liquid
 
-Foi criada uma section para exibir produtos de uma coleção utilizando filtros e lógica condicional.
+Foi criada uma section com filtros e lógica condicional para exibição de produtos.
 
 ### Funcionalidades implementadas
 
-- Seleção de coleção pelo editor visual
-- Título da coleção com `upcase`
-- Título dos produtos com `capitalize`
-- Preço formatado com `money`
-- Descrição tratada com `strip_html` e `truncate`
-- Imagens redimensionadas com `image_url`
-- Badge para produto em promoção
-- Badge para produto esgotado
-- Badge para produto disponível
-- Cálculo da porcentagem de desconto
+- Seleção de coleção
+- Uso de `upcase`
+- Uso de `capitalize`
+- Formatação com `money`
+- Uso de `strip_html`
+- Uso de `truncate`
+- Imagens com `image_url`
+- Badge de promoção
+- Badge de produto esgotado
+- Badge de produto disponível
+- Cálculo de desconto
 - Contagem de produtos em promoção
 - Resumo dinâmico com `capture`
 
@@ -266,29 +229,20 @@ Foi criada uma section para exibir produtos de uma coleção utilizando filtros 
 
 ---
 
-## Desafio 2.3 — Snippet Reutilizável
+## Desafio 2.3 — Snippet reutilizável
 
-Foi criado um snippet reutilizável de card de produto e uma section de grade que utiliza o snippet com `{% render %}`.
+Foi criado um snippet reutilizável de produto e uma section que utiliza o snippet com `{% render %}`.
 
-### Funcionalidades do snippet
+### Funcionalidades
 
 - Imagem do produto
 - Título com link
-- Preço atual formatado
-- Preço original riscado em promoções
-- Badge de promoção
+- Preço atual
+- Preço original em promoções
+- Badge de desconto
 - Badge de produto esgotado
-- Botão visual de adicionar ao carrinho
+- Botão de adicionar ao carrinho
 - Botão desabilitado para produtos indisponíveis
-
-### Funcionalidades da section
-
-- Seleção de coleção
-- Controle do número de colunas
-- Controle do limite de produtos
-- Opção para mostrar ou ocultar badges
-- Cor de fundo configurável
-- Link para todos os produtos
 - Layout responsivo
 
 ### Arquivos relacionados
@@ -298,44 +252,26 @@ Foi criado um snippet reutilizável de card de produto e uma section de grade qu
 
 ---
 
-## Mini-doc — Uso de IA em Liquid
+# ✅ Semana 3 — Metafields, Metaobjects e Blocks
 
-Foi criado um documento com uma reflexão sobre o uso de IA nos exercícios de Liquid.
+Durante a Semana 3, o foco foi aprofundar a personalização de temas Shopify.
 
-O conteúdo aborda:
+## Desafio 3.1 — Hero Banner com Blocks
 
-- Como a IA ajudou na criação de sections
-- Como a IA ajudou na organização da lógica
-- Sugestões que precisaram ser revisadas
-- Importância de testar no preview da Shopify
-- Cuidados com estoque, promoção e configurações do editor
-
-### Arquivo relacionado
-
-- `exercicios/semana-2/quando-usar-IA-liquid.md`
-
----
-
-# ✅ Semana 3 — Metafields, Metaobjects e Blocks Dinâmicos
-
-Durante a Semana 3, o foco foi aprofundar a personalização de temas Shopify utilizando metafields, metaobjects e blocks dinâmicos.
-
-## Desafio 3.1 — Hero Banner com Blocks Dinâmicos
-
-Foi criada uma section `Hero Banner` flexível e configurável pelo editor visual.
+Foi criada uma section Hero Banner flexível e configurável.
 
 ### Funcionalidades implementadas
 
 - Imagem de fundo
-- Overlay com opacidade configurável
-- Altura mínima configurável
+- Overlay configurável
+- Altura mínima
 - Alinhamento do conteúdo
 - Block de título
 - Block de parágrafo
 - Block de botão
 - Block de imagem
 - Adição, remoção e reordenação de blocks
-- Layout adaptado para desktop e mobile
+- Layout responsivo
 
 ### Arquivos relacionados
 
@@ -346,16 +282,15 @@ Foi criada uma section `Hero Banner` flexível e configurável pelo editor visua
 
 ## Desafio 3.2 — Metafields e Metaobjects
 
-Neste desafio, foram criadas estruturas de dados personalizadas para enriquecer páginas de produto.
+Foram criadas estruturas de dados personalizadas para páginas de produto.
 
-### Funcionalidades implementadas
+### Funcionalidades
 
-- Metafields de produto
-- Material
-- Instruções de cuidado
-- Vídeo do produto
-- Metaobject de informações de marca
-- Logo da marca
+- Metafield de material
+- Metafield de instruções de cuidado
+- Metafield de vídeo
+- Metaobject de informações da marca
+- Logo
 - Descrição
 - Site
 - País
@@ -373,148 +308,93 @@ Neste desafio, foram criadas estruturas de dados personalizadas para enriquecer 
 
 # ✅ Semana 4 — Performance e Tema Customizado
 
-Durante a Semana 4, o foco foi auditar e otimizar um tema Shopify e desenvolver sections customizadas completas para o tema Dawn.
-
----
+Durante a Semana 4, o foco foi auditar um tema Shopify e desenvolver sections customizadas para o tema Dawn.
 
 ## Desafio 4.1 — Auditoria de Performance
 
-Foi realizada uma auditoria de performance nas sections customizadas e em arquivos do tema Dawn.
+Foi realizada uma auditoria de performance e qualidade no tema.
 
 ### Otimizações implementadas
 
 - Lazy loading em imagens abaixo da dobra
-- `loading="eager"` em imagens acima da dobra
-- `fetchpriority="high"` em imagens prioritárias
-- Inclusão de `width` e `height` nas imagens
+- `loading="eager"` em imagens prioritárias
+- Uso de `fetchpriority="high"`
+- Inclusão de `width` e `height`
 - Redução de layout shift
-- Critical CSS para conteúdo inicial
-- Carregamento assíncrono de CSS quando aplicável
+- Critical CSS
+- Carregamento assíncrono de CSS
 - JavaScript com `defer` ou `async`
 - Limites em loops Liquid
 - Revisão de lookups repetidos
-- Remoção de tags depreciadas
-- Correções apontadas pelo Theme Check
+- Correções indicadas pelo Theme Check
 - Auditoria com Lighthouse
 - Comparação antes e depois
 
-### Arquivos relacionados
-
-- `exercicios/semana-4/4.1-Performance-audit/desafios/banner-destaque.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/desafios/lista-caracteristicas.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/desafios/pratica-filtros.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/desafios/hero-banner.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/desafios/brand-info.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/desafios/product-extra-info.liquid`
-- `exercicios/semana-4/4.1-Performance-audit/docs/PERFORMANCE-REPORT.md`
-- `exercicios/semana-4/4.1-Performance-audit/dawn/`
-
 ### Evidências
 
-- Screenshot do Lighthouse antes das otimizações
-- Screenshot do Lighthouse depois das otimizações
-- Screenshot do Theme Check
+- Prints do Lighthouse
+- Print do Theme Check
 - Relatório de performance
+- Comparação dos resultados
+
+### Diretórios relacionados
+
+- `exercicios/semana-4/4.1-Performance-audit/dawn`
+- `exercicios/semana-4/4.1-Performance-audit/desafios`
+- `exercicios/semana-4/4.1-Performance-audit/docs`
 
 ---
 
-## Desafio 4.2 — Tema Customizado Completo
+## Desafio 4.2 — Tema Customizado
 
-Neste desafio, foi desenvolvido um conjunto de sections customizadas para o tema Dawn, com foco em flexibilidade, responsividade, metafields e código organizado.
-
-Foram criadas três sections:
+Foram desenvolvidas três sections customizadas:
 
 - FAQ Custom
 - Benefícios do produto
 - Preparo do produto
 
----
-
 ### FAQ Custom
-
-Section de perguntas frequentes com comportamento de accordion.
 
 #### Funcionalidades
 
-- Perguntas expansíveis com `<details>` e `<summary>`
-- Dois tipos diferentes de block
+- Accordion com `<details>` e `<summary>`
 - Block de categoria
 - Block de pergunta e resposta
-- Blocks adicionáveis
-- Blocks removíveis
 - Blocks reordenáveis
-- Preset com conteúdo inicial
-- Abertura de apenas uma pergunta por vez
-- Compatibilidade com o editor visual
-- JavaScript carregado com `defer`
+- Compatibilidade com editor visual
+- JavaScript com `defer`
 - Layout responsivo
-- Foco visível para navegação por teclado
+- Foco visível
 - Suporte a `prefers-reduced-motion`
 
-#### Arquivos relacionados
-
-- `exercicios/semana-4/4.2-Tema-customizado/sections/4-2-faq-custom.liquid`
-- `exercicios/semana-4/4.2-Tema-customizado/assets/4-2-faq-custom.css`
-- `exercicios/semana-4/4.2-Tema-customizado/assets/4-2-faq-custom.js`
-
----
-
 ### Benefícios do produto
-
-Section para apresentar os principais benefícios do produto por meio de cards configuráveis.
 
 #### Funcionalidades
 
 - Cards criados por blocks
 - Ícone configurável
-- Título configurável
-- Descrição configurável
-- Cor de fundo da section
-- Cor do título e subtítulo
-- Cor de fundo dos cards
-- Cor dos textos internos
-- Cor da borda
-- Espessura da borda
-- Arredondamento dos cards
+- Título e descrição
+- Cores configuráveis
+- Bordas configuráveis
+- Arredondamento
 - Layout responsivo
-- Último card centralizado no tablet quando a quantidade é ímpar
 - Imagens com lazy loading
-- Imagens com dimensões definidas
-
-#### Arquivos relacionados
-
-- `exercicios/semana-4/4.2-Tema-customizado/sections/4-2-beneficios-produto.liquid`
-- `exercicios/semana-4/4.2-Tema-customizado/assets/4-2-beneficios-produto.css`
-
----
+- Dimensões definidas
 
 ### Preparo do produto
 
-Section criada para apresentar informações de preparo específicas de cada produto.
-
 #### Funcionalidades
 
-- Cards de preparo configuráveis
-- Ícone opcional por card
+- Cards configuráveis
+- Ícone opcional
 - Nome da etapa
 - Valor manual de reserva
 - Integração com metafields
-- Cor de fundo da section
-- Cor do título e subtítulo
-- Cor de fundo dos cards
-- Cor dos textos internos
-- Cor do valor em destaque
-- Cor da borda
-- Espessura da borda
-- Arredondamento
-- Espaçamento interno
-- Espaço entre os cards
+- Cores e bordas configuráveis
 - Layout responsivo
-- Último card centralizado no tablet quando a quantidade é ímpar
-- Imagens com lazy loading
-- Imagens com `width` e `height`
+- Fallback quando o metafield está vazio
 
-#### Metafields utilizados
+### Metafields utilizados
 
 | Nome | Namespace e chave | Tipo |
 |---|---|---|
@@ -522,142 +402,242 @@ Section criada para apresentar informações de preparo específicas de cada pro
 | Tempo de infusão | `custom.tempo_infusao` | Texto de linha única |
 | Quantidade recomendada | `custom.quantidade_recomendada` | Texto de linha única |
 
-Os três metafields foram configurados para produtos e devem ser preenchidos em pelo menos dois produtos.
+### Diretório relacionado
 
-#### Exemplo de preenchimento
-
-| Produto | Temperatura | Tempo de infusão | Quantidade |
-|---|---|---|---|
-| Chá verde | 80 °C | 3 minutos | 1 colher para 200 ml |
-| Camomila | 95 °C | 5 minutos | 1 colher para 250 ml |
-
-#### Arquivos relacionados
-
-- `exercicios/semana-4/4.2-Tema-customizado/sections/4-2-preparo-produto.liquid`
-- `exercicios/semana-4/4.2-Tema-customizado/assets/4-2-preparo-produto.css`
+- `exercicios/semana-4/4.2-Tema-customizado`
 
 ---
 
-## Responsividade do Desafio 4.2
+# ✅ Semana 5 — Adobe Experience Manager
 
-As sections foram desenvolvidas para funcionar nas seguintes faixas:
+Durante a Semana 5, o foco foi conhecer os fundamentos do **Adobe Experience Manager — AEM Sites**, configurar o ambiente local e realizar o primeiro ciclo completo de desenvolvimento no projeto WKND.
 
-- Mobile: 320 px a 767 px
-- Tablet: 768 px a 1023 px
-- Desktop: 1024 px ou mais
+O fluxo praticado foi:
 
-### Resoluções utilizadas nos testes
-
-- 320 px
-- 375 px
-- 768 px
-- 1024 px
-- 1440 px
-
-Foram verificados:
-
-- Textos cortados
-- Cards fora da tela
-- Rolagem horizontal
-- Quebra de colunas
-- Espaçamentos
-- Imagens distorcidas
-- Funcionamento da FAQ
-- Exibição dos metafields
-- Centralização de cards ímpares
+```text
+editar → compilar → instalar → visualizar no Author
+```
 
 ---
 
-## Screenshots do Desafio 4.2
+## Contextualização e arquitetura do AEM
 
-> Os arquivos abaixo devem estar dentro de `exercicios/semana-4/4.2-Tema-customizado/docs/`.
+O AEM separa conteúdo, lógica e apresentação em diferentes camadas.
 
-### Benefícios do produto
+### Principais elementos
 
-#### Mobile
+- **Author:** ambiente onde páginas e componentes são criados e editados, disponível em `localhost:4502`
+- **Publish:** ambiente que representa o conteúdo exibido ao visitante, normalmente na porta `4503`
+- **JCR:** repositório onde páginas, componentes e propriedades são armazenados como nós
+- **Dialog:** formulário usado pelo autor para configurar os campos de um componente
+- **Sling Model:** classe Java responsável por ler dados do JCR e disponibilizá-los ao componente
+- **HTL:** linguagem de template utilizada para renderizar o HTML
+- **OSGi:** sistema modular utilizado para executar o código Java no AEM
+- **Maven:** ferramenta responsável por compilar, empacotar e instalar o projeto
 
-![Benefícios do produto no mobile](exercicios/semana-4/4.2-Tema-customizado/docs/beneficios-mobile.png)
+O fluxo básico de um componente é:
 
-#### Tablet
-
-![Benefícios do produto no tablet](exercicios/semana-4/4.2-Tema-customizado/docs/beneficios-tablet.png)
-
-#### Desktop
-
-![Benefícios do produto no desktop](exercicios/semana-4/4.2-Tema-customizado/docs/beneficios-desktop.png)
-
-### FAQ Custom
-
-#### Mobile
-
-![FAQ Custom no mobile](exercicios/semana-4/4.2-Tema-customizado/docs/faq-mobile.png)
-
-#### Desktop
-
-![FAQ Custom no desktop](exercicios/semana-4/4.2-Tema-customizado/docs/faq-desktop.png)
-
-### Preparo do produto
-
-#### Mobile
-
-![Preparo do produto no mobile](exercicios/semana-4/4.2-Tema-customizado/docs/preparo-mobile.png)
-
-#### Desktop
-
-![Preparo do produto no desktop](exercicios/semana-4/4.2-Tema-customizado/docs/preparo-desktop.png)
+```text
+Dialog
+   ↓
+Propriedade salva no JCR
+   ↓
+Sling Model
+   ↓
+HTL
+   ↓
+Página renderizada no Author
+```
 
 ---
 
-## Decisões de design do Desafio 4.2
+## Configuração do ambiente
 
-As principais decisões tomadas foram:
+O ambiente local foi preparado com:
 
-- Uso de cards para facilitar a leitura
-- Separação das cores externas e internas
-- Configuração de bordas pelo editor visual
-- Uso de metafields apenas para dados específicos de cada produto
-- Uso de blocks para conteúdos repetíveis
-- Uso de fallback manual quando o metafield estiver vazio
-- Centralização do último card em layouts de tablet
-- Uso de classes no padrão BEM
-- Separação entre Liquid, CSS e JavaScript
-- Uso de HTML semântico
-- Uso de imagens decorativas com `alt=""`
+- OpenJDK 21
+- Apache Maven 3.9
+- Node.js e npm
+- Git
+- Visual Studio Code
+- AEM as a Cloud Service SDK
+- AEM Author na porta `4502`
+- Projeto de exemplo WKND
+
+A estrutura local do SDK foi organizada em:
+
+```text
+C:\aem-sdk\
+├── author\
+├── publish\
+└── dispatcher\
+```
+
+O Author foi iniciado pelo terminal:
+
+```powershell
+cd C:\aem-sdk\author
+java -jar .\aem-author-p4502.jar
+```
+
+O projeto WKND foi compilado e instalado com:
+
+```powershell
+mvn clean install -PautoInstallSinglePackage
+```
+
+Após o deploy, o projeto ficou disponível em:
+
+```text
+AEM → Sites → WKND Site
+```
 
 ---
 
-## Dificuldades encontradas no Desafio 4.2
+## Desafio 5.1 — Ambiente e primeiro deploy do WKND
 
-Durante o desenvolvimento, algumas dificuldades precisaram ser resolvidas:
+O objetivo do desafio foi validar o ambiente AEM e modificar o componente **HelloWorld**, adicionando um novo campo configurável chamado **Subtítulo**.
 
-- Definir quais informações deveriam ser blocks ou metafields
-- Evitar a criação desnecessária de muitos metafields
-- Centralizar uma quantidade ímpar de cards no tablet
-- Separar as cores internas e externas
-- Permitir a configuração das bordas pelo editor
-- Manter os cards responsivos
-- Garantir que os metafields tivessem valores manuais de reserva
-- Manter o JavaScript da FAQ funcionando dentro do editor visual
+### Atividades realizadas
 
----
+- Configuração do ambiente local
+- Inicialização do AEM Author
+- Clone e deploy do projeto WKND
+- Criação da página `Desafio 5.1`
+- Adição do componente HelloWorld
+- Inclusão do campo `Subtítulo` no Dialog
+- Leitura da propriedade pelo Sling Model
+- Criação do método `getSubtitle()`
+- Exibição do valor no HTL
+- Renderização condicional com `data-sly-test`
+- Validação do componente no Author
 
-## Tecnologias utilizadas
+### Implementação do Dialog
+
+O campo foi adicionado ao arquivo `.content.xml`:
+
+```xml
+<subtitle
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+    fieldLabel="Subtítulo"
+    fieldDescription="Texto exibido abaixo do título do componente."
+    emptyText="Digite um subtítulo"
+    name="./subtitle"/>
+```
+
+A propriedade:
+
+```xml
+name="./subtitle"
+```
+
+faz com que o valor seja armazenado no JCR com o nome `subtitle`.
+
+### Implementação do Sling Model
+
+No `HelloWorldModel.java`, foi adicionada a leitura da propriedade:
+
+```java
+@ValueMapValue(
+    name = "subtitle",
+    injectionStrategy = InjectionStrategy.OPTIONAL
+)
+private String subtitle;
+
+public String getSubtitle() {
+    return subtitle;
+}
+```
+
+### Implementação no HTL
+
+No `helloworld.html`, o valor foi exibido com:
+
+```html
+<p
+    class="cmp-helloworld__subtitle"
+    data-sly-test="${model.subtitle}">
+    ${model.subtitle}
+</p>
+```
+
+O `data-sly-test` evita que o elemento seja renderizado quando o campo estiver vazio.
+
+### Página criada no Author
+
+Foi criada uma página específica para demonstrar o componente:
+
+```text
+/content/wknd/us/en/desafio-5-1
+```
+
+Valores utilizados:
+
+```text
+Text: HELLO-WORLD
+Subtítulo: Vamos começar.
+```
+
+### Arquivos relacionados
+
+- `exercicios/semana-5/5.1-helloworld-subtitle/.content.xml`
+- `exercicios/semana-5/5.1-helloworld-subtitle/helloworld.html`
+- `exercicios/semana-5/5.1-helloworld-subtitle/HelloWorldModel.java`
+
+### Evidências
+
+#### Página criada no Author
+
+![Página do Desafio 5.1](exercicios/semana-5/5.1-helloworld-subtitle/docs/pagina-desafio-5-1.png)
+
+#### Dialog com o campo Subtítulo
+
+![Dialog com o campo Subtítulo](exercicios/semana-5/5.1-helloworld-subtitle/docs/dialog-subtitulo.png)
+
+#### Componente renderizado
+
+![HelloWorld renderizado](exercicios/semana-5/5.1-helloworld-subtitle/docs/helloworld-renderizado.png)
+
+### Principais aprendizados
+
+- Diferença entre Author e Publish
+- Organização modular do projeto WKND
+- Função dos módulos `core` e `ui.apps`
+- Persistência de propriedades no JCR
+- Criação de campos em Dialogs Touch UI
+- Uso de `@ValueMapValue`
+- Comunicação entre Sling Model e HTL
+- Deploy de bundles OSGi
+- Renderização condicional com `data-sly-test`
+
+# Tecnologias utilizadas
 
 - JavaScript
+- HTML
+- CSS
 - Liquid
 - Shopify
 - Shopify CLI
 - Dawn Theme
+- Adobe Experience Manager
+- AEM Sites
+- HTL
+- Apache Sling
+- Sling Models
+- JCR
+- OSGi
+- Java
+- Maven
 - Git
 - GitHub
 - GitHub Copilot
 - Markdown
-- HTML
-- CSS
+- Visual Studio Code
 
 ---
 
-## Padrão de branches
+# Padrão de branches
 
 As branches seguem o padrão:
 
@@ -676,20 +656,23 @@ exercicio/2.2-filtros-condicionais
 exercicio/2.3-snippet-reutilizavel
 exercicio/4.1-performance-audit
 exercicio/4.2-tema-customizado
+exercicio/5.1-helloworld-subtitulo
+exercicio/5.2-componente-perfil
 ```
 
 ---
 
-## Padrão de commits
+# Padrão de commits
 
 Os commits seguem o padrão de commits semânticos:
 
 ```text
 feat: nova funcionalidade
-fix: correção de bug
-docs: alteração em documentação
-refactor: melhoria no código sem alterar comportamento
+fix: correção de problema
+docs: alteração na documentação
+refactor: melhoria interna sem mudança de comportamento
 perf: melhoria de performance
+test: criação ou alteração de testes
 chore: configuração ou tarefa auxiliar
 ```
 
@@ -698,27 +681,21 @@ Exemplos:
 ```text
 docs: adicionar apresentação pessoal
 feat: criar calculadora com operações básicas
-feat: adicionar cálculo de porcentagem
 fix: corrigir bugs em código gerado por IA
-docs: adicionar reflexão sobre uso de IA
 feat: criar section Liquid básica
-feat: criar section com filtros e condicionais
 feat: criar snippet reutilizável de produto
-perf: otimizar imagens e carregamento do tema
-feat: criar FAQ customizada com blocks
-feat: criar section de benefícios do produto
+perf: otimizar imagens do tema
+feat: criar FAQ customizada
 feat: integrar metafields na section de preparo
-fix: centralizar cards ímpares no tablet
-docs: documentar desafio 4.2 no README
+feat(helloworld): adicionar subtitulo configuravel
+docs: documentar desafio 5.1
 ```
 
 ---
 
-## Como executar os arquivos JavaScript
+# Como executar os arquivos JavaScript
 
-Para executar os arquivos JavaScript da Semana 1, é necessário ter o Node.js instalado.
-
-Exemplos:
+Para executar os arquivos da Semana 1:
 
 ```bash
 node exercicios/semana-1/calculadora.js
@@ -729,85 +706,73 @@ node exercicios/semana-1/com-ia.js
 
 ---
 
-## Como testar os arquivos Liquid no Shopify
+# Como testar os arquivos Shopify
 
-## 1. Copiar os arquivos para o tema
-
-Copie os arquivos `.liquid` para:
-
-```text
-sections/
-```
-
-Copie os arquivos `.css` e `.js` para:
-
-```text
-assets/
-```
-
-Exemplo:
-
-```text
-sections/4-2-faq-custom.liquid
-sections/4-2-beneficios-produto.liquid
-sections/4-2-preparo-produto.liquid
-
-assets/4-2-faq-custom.css
-assets/4-2-faq-custom.js
-assets/4-2-beneficios-produto.css
-assets/4-2-preparo-produto.css
-```
-
-## 2. Iniciar o ambiente local
-
-Dentro da pasta do tema, execute:
+## Iniciar o tema localmente
 
 ```bash
 shopify theme dev --store=sua-loja.myshopify.com
 ```
 
-## 3. Abrir o editor visual
+## Executar o Theme Check
 
-No editor visual da Shopify:
-
-1. Abra o template de produto.
-2. Clique em `Adicionar seção`.
-3. Adicione as sections customizadas.
-4. Configure cores, bordas e conteúdos.
-5. Salve as alterações.
-
----
-
-## Como configurar os metafields
-
-No painel administrativo da Shopify:
-
-1. Acesse `Configurações`.
-2. Entre em `Dados personalizados`.
-3. Selecione `Produtos`.
-4. Crie as três definições.
-
-Use:
-
-```text
-custom.temperatura_preparo
-custom.tempo_infusao
-custom.quantidade_recomendada
+```bash
+shopify theme check
 ```
 
-Configure as três como texto de linha única.
+Para mais detalhes:
 
-Depois:
+```bash
+shopify theme check --verbose
+```
 
-1. Abra um produto.
-2. Preencha os três campos.
-3. Repita em pelo menos outro produto.
-4. Abra o preview.
-5. Verifique se os valores aparecem nos cards.
+Meta:
+
+```text
+0 errors
+```
 
 ---
 
-## Como testar a responsividade
+# Como testar o AEM localmente
+
+## 1. Iniciar o Author
+
+```powershell
+cd C:\aem-sdk\author
+java -jar .\aem-author-p4502.jar
+```
+
+## 2. Abrir o Author
+
+```text
+http://localhost:4502
+```
+
+## 3. Entrar no projeto WKND
+
+```text
+Sites → WKND Site → United States → English
+```
+
+## 4. Abrir a página do desafio
+
+```text
+/content/wknd/us/en/desafio-5-1
+```
+
+## 5. Editar o componente
+
+1. Selecione o HelloWorld.
+2. Clique no ícone de configuração.
+3. Preencha `Text`.
+4. Preencha `Subtítulo`.
+5. Clique em `Done`.
+6. Verifique o valor renderizado.
+
+---
+
+# Como testar a responsividade
 
 No Google Chrome:
 
@@ -815,9 +780,9 @@ No Google Chrome:
 2. Pressione `F12`.
 3. Use `Ctrl + Shift + M`.
 4. Escolha o modo responsivo.
-5. Digite manualmente as larguras.
+5. Informe as larguras desejadas.
 
-Teste:
+Resoluções utilizadas:
 
 ```text
 320 px
@@ -827,87 +792,56 @@ Teste:
 1440 px
 ```
 
-Verifique:
-
-- Quebra dos cards
-- Centralização
-- Espaçamentos
-- Textos
-- Imagens
-- Bordas
-- Funcionamento da FAQ
-- Exibição dos metafields
-
 ---
 
-## Como executar o Theme Check
-
-Dentro da pasta do tema, execute:
-
-```bash
-shopify theme check
-```
-
-Para obter mais detalhes:
-
-```bash
-shopify theme check --verbose
-```
-
-A meta da entrega é:
-
-```text
-0 errors
-```
-
-Warnings restantes devem ser analisados e justificados.
-
----
-
-## Organização do projeto
+# Organização do projeto
 
 O repositório contém:
 
 - Exercícios semanais
+- Código JavaScript
 - Sections Liquid
 - Snippets reutilizáveis
 - Arquivos CSS
-- Arquivos JavaScript
 - Relatórios de performance
-- Screenshots de validação
+- Screenshots
 - Reflexões sobre IA
+- Componentes AEM
+- Sling Models
+- Dialogs Touch UI
+- Scripts HTL
 - Documentação em Markdown
-- `.gitignore`
+- Arquivo `.gitignore`
 - README atualizado
 
 ---
 
-## Aprendizados
+# Aprendizados gerais
 
-Durante as atividades, foram praticados conceitos importantes para o desenvolvimento profissional, como organização de código, versionamento, revisão, análise crítica de código gerado por IA e documentação.
+Durante as atividades, foram praticados conceitos importantes para o desenvolvimento profissional.
 
-Na Semana 1, o foco foi Git, GitHub, JavaScript e uso crítico de IA.
+Entre os principais aprendizados estão:
 
-Na Semana 2, o foco foi Shopify, Liquid, filtros, condicionais e componentes reutilizáveis.
-
-Na Semana 3, o foco foi personalização avançada com metafields, metaobjects e blocks dinâmicos.
-
-Na Semana 4, o foco foi performance, acessibilidade, responsividade e desenvolvimento de um tema customizado completo.
-
-Os principais aprendizados foram:
-
-- IA pode acelerar o desenvolvimento, mas todo código precisa ser revisado
+- IA pode acelerar o desenvolvimento, mas o código precisa ser revisado
+- Commits pequenos facilitam a análise
+- Branches evitam alterações diretas na `main`
+- Pull Requests organizam a revisão
 - Blocks são indicados para conteúdos repetíveis
-- Metafields são indicados para dados específicos de produtos
-- Sections devem ser configuráveis pelo editor visual
-- Responsividade deve ser testada em diferentes resoluções
-- Lazy loading e dimensões de imagem ajudam na performance
-- Código limpo facilita manutenção
-- Documentação é parte importante da entrega
-- Theme Check e Lighthouse ajudam a identificar problemas reais
+- Metafields são indicados para dados específicos
+- Responsividade deve ser validada em diferentes tamanhos
+- Imagens precisam de dimensões definidas
+- Lazy loading ajuda a reduzir carregamentos desnecessários
+- Theme Check e Lighthouse ajudam a identificar problemas
+- O AEM separa conteúdo, apresentação e lógica
+- Dialogs controlam os dados preenchidos pelo autor
+- Sling Models concentram a lógica Java
+- HTL deve concentrar a apresentação
+- Código Java precisa ser empacotado como bundle OSGi
+- Maven garante builds reproduzíveis
+- Documentação e evidências fazem parte da entrega
 
 ---
 
-## 👤 Autor
+# 👤 Autor
 
 **Emiliano Souza**
