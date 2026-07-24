@@ -40,6 +40,9 @@ Durante as semanas do programa, foram praticados conceitos como:
 - Policies e Allowed Components
 - Layout responsivo no AEM
 - AEM Package Manager
+- Client Libraries do AEM
+- Style System
+- Design Dialogs
 
 ---
 
@@ -112,17 +115,45 @@ bootcamp-2-ecommerce/
 │   │               └── .content.xml
 │   │
 │   └── semana-6/
-│       └── 6.1-editableTemplate-politicas/
-│           ├── docs/
-│           │   ├── 6-1-demonstracao.mp4
-│           │   ├── 6.1-crxde_policy.png
-│           │   ├── 6.1-layout-colunas.png
-│           │   ├── 6.1-pagina-final.png
-│           │   ├── 6.1-policy-allowed-editor.png
-│           │   ├── 6.1-policy-allowed-template.png
-│           │   ├── 6.1-structure.png
-│           │   └── 6.1-template.png
-│           └── desafio-6-1-1.0.0.zip
+│       ├── 6.1-editableTemplate-politicas/
+│       │   ├── docs/
+│       │   │   ├── 6-1-demonstracao.mp4
+│       │   │   ├── 6.1-crxde_policy.png
+│       │   │   ├── 6.1-layout-colunas.png
+│       │   │   ├── 6.1-pagina-final.png
+│       │   │   ├── 6.1-policy-allowed-editor.png
+│       │   │   ├── 6.1-policy-allowed-template.png
+│       │   │   ├── 6.1-structure.png
+│       │   │   └── 6.1-template.png
+│       │   └── desafio-6-1-1.0.0.zip
+│       │
+│       └── 6.2-destaque-estilizado/
+│           ├── desafio/
+│           │   ├── component/
+│           │   │   └── destaque/
+│           │   │       ├── .content.xml
+│           │   │       ├── destaque.html
+│           │   │       ├── _cq_dialog/
+│           │   │       │   └── .content.xml
+│           │   │       ├── _cq_design_dialog/
+│           │   │       │   └── .content.xml
+│           │   │       └── clientlibs/
+│           │   │           ├── .content.xml
+│           │   │           ├── css.txt
+│           │   │           ├── js.txt
+│           │   │           ├── css/
+│           │   │           │   └── destaque.css
+│           │   │           └── js/
+│           │   │               └── destaque.js
+│           │   ├── models/
+│           │   │   └── DestaqueModel.java
+│           │   └── desafio-6-2-1.0.0.zip
+│           └── docs/
+│               ├── 6.2-botoes.png
+│               ├── 6.2-dialog.png
+│               ├── 6.2-policies-temas.png
+│               ├── 6.2-tema-escuro.png
+│               └── 6.2-temas.png
 │
 ├── .gitignore
 └── README.md
@@ -130,7 +161,7 @@ bootcamp-2-ecommerce/
 
 > Os arquivos foram organizados por semana e por desafio para facilitar a avaliação.
 
-> Nos desafios 5.1 e 5.2, foram versionadas as partes criadas ou modificadas no projeto WKND. No Desafio 6.1, foi versionado um pacote AEM instalável contendo o template, a policy e a página de demonstração, acompanhado das evidências e do vídeo de funcionamento.
+> Nos desafios 5.1 e 5.2, foram versionadas as partes criadas ou modificadas no projeto WKND. No Desafio 6.1, foi versionado um pacote AEM instalável contendo o template, a policy e a página de demonstração, acompanhado das evidências e do vídeo de funcionamento. No Desafio 6.2, foram versionados o código-fonte do componente full-stack, o Sling Model, a client library, os Dialogs, um pacote auxiliar do AEM e as evidências dos testes.
 
 ---
 
@@ -918,14 +949,15 @@ data-sly-test="${perfil.cargo}"
 
 ![Perfil sem cargo](exercicios/semana-5/5.2-componente-cartao-perfil/docs/perfil-sem-cargo.png)
 
-# ✅ Semana 6 — Editable Templates e Políticas
+# ✅ Semana 6 — Editable Templates, Componentes e Estilo
 
-Durante a Semana 6, o foco foi aprofundar a criação de páginas no **Adobe Experience Manager**, utilizando **Editable Templates**, **Core Components**, políticas de conteúdo e o layout responsivo do AEM.
+Durante a Semana 6, o foco foi aprofundar a criação de páginas e componentes completos no **Adobe Experience Manager**, utilizando **Editable Templates**, **Core Components**, políticas, **HTL**, **Sling Models**, **Client Libraries** e o **Style System**.
 
-O fluxo praticado foi:
+Os fluxos praticados foram:
 
 ```text
 Template Type → Editable Template → Structure → Policy → Initial Content → Página
+Dialog → JCR → Sling Model → HTL → Client Library → Style System
 ```
 
 ---
@@ -1123,6 +1155,471 @@ Assim, o template, a policy e a página de demonstração podem ser instalados e
 
 ---
 
+## Desafio 6.2 — Componente Full-Stack: Destaque Estilizado
+
+O objetivo do desafio foi criar um componente AEM completo, reunindo configuração de conteúdo, lógica Java, apresentação em HTL, estilos próprios, comportamento no navegador e variações visuais controladas pelo autor.
+
+O fluxo implementado foi:
+
+```text
+Dialog Touch UI
+      ↓
+Propriedades salvas no JCR
+      ↓
+DestaqueModel
+      ↓
+destaque.html
+      ↓
+Client Library wknd.destaque
+      ↓
+Style System
+```
+
+### Atividades realizadas
+
+- Criação do componente `destaque` em `/apps/wknd/components/destaque`
+- Registro do componente como `cq:Component`
+- Definição de `jcr:title` e `componentGroup`
+- Criação do Dialog Touch UI com quatro campos
+- Persistência das propriedades no JCR
+- Criação do `DestaqueModel`
+- Uso de `@ValueMapValue`
+- Criação dos getters para os valores configurados
+- Implementação do método `isMostrarBotao()`
+- Uso de `data-sly-use` para carregar o Sling Model
+- Uso de `data-sly-test` para renderizar o botão condicionalmente
+- Criação da client library `wknd.destaque`
+- Inclusão de CSS e JavaScript próprios
+- Inclusão da client library por `data-sly-call`
+- Criação do Design Dialog para habilitar o Style System
+- Configuração dos estilos Claro e Escuro na policy
+- Criação da página `Desafio 6.2`
+- Teste do botão com URL preenchida e vazia
+- Teste das duas variações visuais
+- Exportação de um pacote auxiliar pelo AEM Package Manager
+
+### Estrutura do componente
+
+```text
+6.2-destaque-estilizado/
+├── desafio/
+│   ├── component/
+│   │   └── destaque/
+│   │       ├── .content.xml
+│   │       ├── destaque.html
+│   │       ├── _cq_dialog/
+│   │       │   └── .content.xml
+│   │       ├── _cq_design_dialog/
+│   │       │   └── .content.xml
+│   │       └── clientlibs/
+│   │           ├── .content.xml
+│   │           ├── css.txt
+│   │           ├── js.txt
+│   │           ├── css/
+│   │           │   └── destaque.css
+│   │           └── js/
+│   │               └── destaque.js
+│   ├── models/
+│   │   └── DestaqueModel.java
+│   └── desafio-6-2-1.0.0.zip
+└── docs/
+    ├── 6.2-botoes.png
+    ├── 6.2-dialog.png
+    ├── 6.2-policies-temas.png
+    ├── 6.2-tema-escuro.png
+    └── 6.2-temas.png
+```
+
+### Definição do componente
+
+O componente foi registrado com:
+
+```xml
+<jcr:root
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Component"
+    jcr:title="Destaque Estilizado"
+    jcr:description="Componente de destaque com botão condicional e estilos configuráveis."
+    componentGroup="WKND.Content"/>
+```
+
+A propriedade:
+
+```xml
+jcr:primaryType="cq:Component"
+```
+
+registra o nó como um componente do AEM.
+
+O nome exibido ao autor é definido por:
+
+```xml
+jcr:title="Destaque Estilizado"
+```
+
+O componente foi disponibilizado no painel pelo grupo:
+
+```xml
+componentGroup="WKND.Content"
+```
+
+### Implementação do Dialog
+
+O Dialog Touch UI possui quatro campos:
+
+- Título
+- Texto
+- Texto do botão
+- URL do botão
+
+As propriedades são persistidas na instância do componente por meio de:
+
+```xml
+name="./titulo"
+name="./texto"
+name="./textoBotao"
+name="./urlBotao"
+```
+
+Os nomes utilizados no Dialog correspondem aos atributos lidos pelo Sling Model:
+
+```text
+titulo
+texto
+textoBotao
+urlBotao
+```
+
+A URL do botão foi mantida como opcional. Quando esse campo fica vazio, o botão deixa de ser renderizado.
+
+### Implementação do Sling Model
+
+O `DestaqueModel` foi adaptado a partir de um `Resource` e associado ao tipo do componente:
+
+```java
+@Model(
+    adaptables = Resource.class,
+    resourceType = DestaqueModel.RESOURCE_TYPE,
+    defaultInjectionStrategy = DefaultInjectionStrategy.OPTIONAL
+)
+public class DestaqueModel {
+```
+
+O tipo do componente foi centralizado em:
+
+```java
+public static final String RESOURCE_TYPE = "wknd/components/destaque";
+```
+
+As quatro propriedades são injetadas com `@ValueMapValue`:
+
+```java
+@ValueMapValue
+private String titulo;
+
+@ValueMapValue
+private String texto;
+
+@ValueMapValue
+private String textoBotao;
+
+@ValueMapValue
+private String urlBotao;
+```
+
+Os valores são disponibilizados por meio de getters.
+
+A regra de exibição do botão foi implementada no Model:
+
+```java
+public boolean isMostrarBotao() {
+    return urlBotao != null && !urlBotao.trim().isEmpty();
+}
+```
+
+O método retorna `false` quando a URL é nula, vazia ou contém somente espaços. Dessa forma, a regra permanece na camada Java, enquanto o HTL apenas utiliza o resultado.
+
+### Implementação no HTL
+
+O Sling Model é carregado no `destaque.html` por:
+
+```html
+data-sly-use.model="com.adobe.aem.guides.wknd.core.models.DestaqueModel"
+```
+
+O título e o texto são renderizados somente quando possuem valor:
+
+```html
+<h2
+    class="cmp-destaque__title"
+    data-sly-test="${model.titulo}">
+    ${model.titulo}
+</h2>
+
+<p
+    class="cmp-destaque__text"
+    data-sly-test="${model.texto}">
+    ${model.texto}
+</p>
+```
+
+O botão utiliza o retorno do método `isMostrarBotao()`:
+
+```html
+<a
+    class="cmp-destaque__button"
+    data-sly-test="${model.mostrarBotao}"
+    href="${model.urlBotao @ context='uri'}">
+    ${model.textoBotao}
+</a>
+```
+
+Quando `model.mostrarBotao` retorna `false`, a tag `<a>` não é incluída no HTML final.
+
+### Client Library
+
+Foi criada uma client library própria com a categoria:
+
+```text
+wknd.destaque
+```
+
+O nó foi registrado como:
+
+```xml
+<jcr:root
+    xmlns:cq="http://www.day.com/jcr/cq/1.0"
+    xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:ClientLibraryFolder"
+    categories="[wknd.destaque]"
+    allowProxy="{Boolean}true"/>
+```
+
+A propriedade:
+
+```xml
+jcr:primaryType="cq:ClientLibraryFolder"
+```
+
+faz com que o AEM reconheça o diretório como uma biblioteca de recursos do navegador.
+
+A categoria:
+
+```xml
+categories="[wknd.destaque]"
+```
+
+é o identificador utilizado pelo HTL para solicitar a biblioteca.
+
+O `allowProxy` permite que os recursos armazenados em `/apps` sejam disponibilizados ao navegador por `/etc.clientlibs`.
+
+Os arquivos foram registrados por:
+
+```text
+css.txt → css/destaque.css
+js.txt  → js/destaque.js
+```
+
+A client library é carregada no HTL com:
+
+```html
+<sly
+    data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"/>
+
+<sly data-sly-call="${clientlib.css @ categories='wknd.destaque'}"/>
+
+<sly data-sly-call="${clientlib.js @ categories='wknd.destaque'}"/>
+```
+
+O CSS controla a aparência do componente e das variações visuais. O JavaScript procura os elementos com:
+
+```html
+data-cmp-is="destaque"
+```
+
+e marca cada instância inicializada com:
+
+```text
+cmp-destaque--inicializado
+data-destaque-inicializado="true"
+```
+
+### Design Dialog e Style System
+
+Como o componente foi criado do zero, foi adicionado um Design Dialog em:
+
+```text
+/apps/wknd/components/destaque/cq:design_dialog
+```
+
+No código-fonte, ele corresponde à pasta:
+
+```text
+_cq_design_dialog
+```
+
+O Design Dialog inclui a aba padrão do Style System:
+
+```xml
+<styles
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/include"
+    path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_design/styletab"/>
+```
+
+Na policy do componente foi criado o grupo:
+
+```text
+Tema
+```
+
+Com duas opções:
+
+```text
+Claro  → cmp-destaque--claro
+Escuro → cmp-destaque--escuro
+```
+
+A combinação de estilos foi desabilitada para que apenas uma variação seja selecionada por vez.
+
+As duas opções utilizam o mesmo HTL. O Style System adiciona a classe escolhida ao wrapper do componente, e o CSS altera as variáveis de cor do Destaque.
+
+### Página criada no Author
+
+A página de demonstração foi criada em:
+
+```text
+/content/wknd/us/en/desafio-6-2
+```
+
+O componente foi preenchido com:
+
+```text
+Título: Explore novas experiências
+Texto: Descubra aventuras, destinos e atividades selecionadas para tornar sua próxima viagem inesquecível.
+Texto do botão: Conheça as aventuras
+URL do botão: /content/wknd/us/en/adventures.html
+```
+
+### Testes realizados
+
+#### URL preenchida
+
+Com a URL preenchida, o método:
+
+```java
+isMostrarBotao()
+```
+
+retornou `true`, e o botão foi renderizado com o link configurado.
+
+#### URL vazia
+
+A URL foi removida, mantendo o texto do botão preenchido.
+
+O botão desapareceu completamente da página, validando a lógica do Sling Model e o uso de:
+
+```html
+data-sly-test="${model.mostrarBotao}"
+```
+
+#### Estilos Claro e Escuro
+
+O autor alternou entre as opções disponíveis no Style System.
+
+No estilo Claro, o componente utiliza fundo claro, texto escuro e botão escuro.
+
+No estilo Escuro, o componente utiliza fundo escuro, texto claro e botão amarelo.
+
+### Deploy
+
+O Sling Model foi compilado e instalado com:
+
+```powershell
+mvn -pl core clean install -PautoInstallBundle
+```
+
+O componente, os Dialogs, o HTL e a client library foram instalados com:
+
+```powershell
+mvn -pl ui.apps clean install -PautoInstallPackage
+```
+
+### Pacote AEM
+
+Foi criado o pacote auxiliar:
+
+```text
+exercicios/semana-6/6.2-destaque-estilizado/desafio/desafio-6-2-1.0.0.zip
+```
+
+O pacote contém os conteúdos armazenados no JCR:
+
+```text
+/apps/wknd/components/destaque
+/conf/wknd/settings/wcm/templates/6-2---landing-wknd
+/conf/wknd/settings/wcm/policies/wknd/components/destaque
+/conf/wknd/settings/wcm/policies/wknd/components/container
+/content/wknd/us/en/desafio-6-2
+```
+
+O código-fonte do `DestaqueModel` foi versionado separadamente porque sua execução depende do bundle OSGi gerado pelo módulo `core`.
+
+### Arquivos relacionados
+
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/models/DestaqueModel.java`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/.content.xml`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/destaque.html`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/_cq_dialog/.content.xml`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/_cq_design_dialog/.content.xml`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/clientlibs/.content.xml`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/clientlibs/css.txt`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/clientlibs/js.txt`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/clientlibs/css/destaque.css`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/component/destaque/clientlibs/js/destaque.js`
+- `exercicios/semana-6/6.2-destaque-estilizado/desafio/desafio-6-2-1.0.0.zip`
+
+### Evidências
+
+#### Dialog Touch UI
+
+![Dialog do Destaque Estilizado](exercicios/semana-6/6.2-destaque-estilizado/docs/6.2-dialog.png)
+
+#### Botão condicional
+
+![Teste do botão com e sem URL](exercicios/semana-6/6.2-destaque-estilizado/docs/6.2-botoes.png)
+
+#### Policy do Style System
+
+![Policy com os estilos Claro e Escuro](exercicios/semana-6/6.2-destaque-estilizado/docs/6.2-policies-temas.png)
+
+#### Opções de tema no editor
+
+![Opções Claro e Escuro](exercicios/semana-6/6.2-destaque-estilizado/docs/6.2-temas.png)
+
+#### Componente com tema escuro
+
+![Destaque com o tema Escuro](exercicios/semana-6/6.2-destaque-estilizado/docs/6.2-tema-escuro.png)
+
+### Principais aprendizados
+
+- Separação entre lógica no Sling Model e apresentação no HTL
+- Implementação de comportamento condicional com um método booleano
+- Uso de `data-sly-test` com o retorno de um Sling Model
+- Criação de client libraries próprias no AEM
+- Registro de categorias com `cq:ClientLibraryFolder`
+- Uso de `css.txt` e `js.txt`
+- Disponibilização de recursos por meio de `allowProxy`
+- Inclusão de clientlibs com `data-sly-call`
+- Criação de um Design Dialog para componentes customizados
+- Configuração do Style System pela policy
+- Uso de classes CSS para oferecer variações visuais
+- Integração entre Java, HTL, CSS, JavaScript e JCR
+- Diferença entre código-fonte Java e conteúdo exportado pelo Package Manager
+
+---
+
 # ⚙️ Informações do Projeto
 
 ## Tecnologias utilizadas
@@ -1139,6 +1636,9 @@ Assim, o template, a policy e a página de demonstração podem ser instalados e
 - Core Components
 - Editable Templates
 - AEM Package Manager
+- Client Libraries
+- Style System
+- Design Dialogs
 - HTL
 - Apache Sling
 - Sling Models
@@ -1176,6 +1676,7 @@ exercicio/4.2-tema-customizado
 exercicio/5.1-helloworld-subtitulo
 exercicio/5.2-componente-cartao-perfil
 exercicio/6.1-editable-template-politicas
+exercicio/6.2-destaque-estilizado
 ```
 
 ---
@@ -1211,6 +1712,8 @@ feat(perfil): criar componente cartao de perfil
 docs: documentar desafio 5.2
 feat(aem): criar editable template com policies
 docs: documentar desafio 6.1
+feat(destaque): criar componente full-stack estilizado
+docs: documentar desafio 6.2
 ```
 
 ---
@@ -1297,6 +1800,12 @@ Desafio 6.1:
 /content/wknd/us/en/desafio-6-1
 ```
 
+Desafio 6.2:
+
+```text
+/content/wknd/us/en/desafio-6-2
+```
+
 ## 5. Testar o Desafio 5.1
 
 1. Selecione o HelloWorld.
@@ -1329,6 +1838,23 @@ Desafio 6.1:
 8. Verifique a imagem e o texto em duas colunas.
 9. Confirme que o painel do container central apresenta apenas Button, Image, Teaser, Text e Title.
 
+## 8. Instalar e testar o Desafio 6.2
+
+1. Abra o Package Manager em `http://localhost:4502/crx/packmgr/index.jsp`.
+2. Clique em `Upload Package`.
+3. Selecione o arquivo `exercicios/semana-6/6.2-destaque-estilizado/desafio/desafio-6-2-1.0.0.zip`.
+4. Faça o upload e clique em `Install`.
+5. No projeto WKND original, instale o bundle com `mvn -pl core clean install -PautoInstallBundle`.
+6. Abra a página `/content/wknd/us/en/desafio-6-2`.
+7. Abra o Dialog do componente `Destaque Estilizado`.
+8. Preencha Título, Texto, Texto do botão e URL do botão.
+9. Confirme que o botão aparece quando a URL está preenchida.
+10. Apague somente a URL e confirme que o botão deixa de ser renderizado.
+11. Abra o Style System e alterne entre os estilos Claro e Escuro.
+12. Confirme que o CSS e o JavaScript da categoria `wknd.destaque` estão carregados.
+
+> O pacote do Desafio 6.2 contém o componente, a client library, o template, as policies e a página. O `DestaqueModel` precisa estar instalado no bundle OSGi do módulo `core`.
+
 ---
 
 # Organização do projeto
@@ -1350,6 +1876,9 @@ O repositório contém:
 - Editable Templates
 - Policies do AEM
 - Pacotes instaláveis do AEM
+- Client Libraries do AEM
+- Design Dialogs
+- Configurações do Style System
 - Vídeos de demonstração
 - Documentação em Markdown
 - Arquivo `.gitignore`
@@ -1410,6 +1939,18 @@ Entre os principais aprendizados estão:
 - Identificação de templates e policies no CRXDE Lite no AEM
 - Exportação seletiva de conteúdo pelo AEM Package Manager
 - Relação entre os nós do template, da policy e da página no JCR no AEM
+- Criação de componentes full-stack com Dialog, Sling Model, HTL, CSS e JavaScript
+- Implementação de regras condicionais no Sling Model
+- Uso de métodos booleanos do Model no `data-sly-test`
+- Criação de Client Libraries com categoria própria
+- Organização de CSS e JavaScript por meio de `css.txt` e `js.txt`
+- Uso de `allowProxy` para disponibilizar clientlibs armazenadas em `/apps`
+- Inclusão de CSS e JavaScript no HTL por `data-sly-call`
+- Criação de Design Dialog para componentes customizados
+- Configuração de variações visuais pelo Style System
+- Aplicação de classes CSS definidas em policies
+- Diferença entre conteúdo JCR exportado e código Java executado em bundle OSGi
+- Validação do HTML renderizado após o processamento do HTL no servidor
 
 ---
 
