@@ -35,6 +35,11 @@ Durante as semanas do programa, foram praticados conceitos como:
 - JCR
 - Maven
 - Bundles OSGi
+- Core Components e padrão proxy
+- Editable Templates
+- Policies e Allowed Components
+- Layout responsivo no AEM
+- AEM Package Manager
 
 ---
 
@@ -81,30 +86,43 @@ bootcamp-2-ecommerce/
 │   │       ├── sections/
 │   │       └── docs/
 │   │
-│   └── semana-5/
-│       ├── 5.1-helloworld-subtitle/
-│       │   ├── docs/
-│       │   │   ├── pagina-desafio-5-1.png
-│       │   │   ├── dialog-subtitulo.png
-│       │   │   └── helloworld-renderizado.png
-│       │   ├── .content.xml
-│       │   ├── helloworld.html
-│       │   └── HelloWorldModel.java
-│       │
-│       └── 5.2-componente-cartao-perfil/
+│   ├── semana-5/
+│   │   ├── 5.1-helloworld-subtitle/
+│   │   │   ├── docs/
+│   │   │   │   ├── pagina-desafio-5-1.png
+│   │   │   │   ├── dialog-subtitulo.png
+│   │   │   │   └── helloworld-renderizado.png
+│   │   │   ├── .content.xml
+│   │   │   ├── helloworld.html
+│   │   │   └── HelloWorldModel.java
+│   │   │
+│   │   └── 5.2-componente-cartao-perfil/
+│   │       ├── docs/
+│   │       │   ├── componente-no-painel.png
+│   │       │   ├── dialog-perfil.png
+│   │       │   ├── pagina-desafio.png
+│   │       │   ├── perfil-com-cargo.png
+│   │       │   └── perfil-sem-cargo.png
+│   │       ├── models/
+│   │       │   └── PerfilModel.java
+│   │       └── perfil/
+│   │           ├── .content.xml
+│   │           ├── perfil.html
+│   │           └── _cq_dialog/
+│   │               └── .content.xml
+│   │
+│   └── semana-6/
+│       └── 6.1-editableTemplate-politicas/
 │           ├── docs/
-│           │   ├── componente-no-painel.png
-│           │   ├── dialog-perfil.png
-│           │   ├── pagina-desafio.png
-│           │   ├── perfil-com-cargo.png
-│           │   └── perfil-sem-cargo.png
-│           ├── models/
-│           │   └── PerfilModel.java
-│           └── perfil/
-│               ├── .content.xml
-│               ├── perfil.html
-│               └── _cq_dialog/
-│                   └── .content.xml
+│           │   ├── 6-1-demonstracao.mp4
+│           │   ├── 6.1-crxde_policy.png
+│           │   ├── 6.1-layout-colunas.png
+│           │   ├── 6.1-pagina-final.png
+│           │   ├── 6.1-policy-allowed-editor.png
+│           │   ├── 6.1-policy-allowed-template.png
+│           │   ├── 6.1-structure.png
+│           │   └── 6.1-template.png
+│           └── desafio-6-1-1.0.0.zip
 │
 ├── .gitignore
 └── README.md
@@ -112,7 +130,7 @@ bootcamp-2-ecommerce/
 
 > Os arquivos foram organizados por semana e por desafio para facilitar a avaliação.
 
-> Os arquivos presentes nos diretórios dos desafios 5.1 e 5.2 representam as partes criadas ou modificadas no projeto WKND original. O projeto AEM completo permanece no ambiente local de desenvolvimento.
+> Nos desafios 5.1 e 5.2, foram versionadas as partes criadas ou modificadas no projeto WKND. No Desafio 6.1, foi versionado um pacote AEM instalável contendo o template, a policy e a página de demonstração, acompanhado das evidências e do vídeo de funcionamento.
 
 ---
 
@@ -624,12 +642,6 @@ Subtítulo: Vamos começar.
 - Deploy de bundles OSGi
 - Renderização condicional com `data-sly-test`
 
-#### Componente renderizado
-
-![HelloWorld renderizado](exercicios/semana-5/5.1-helloworld-subtitle/docs/helloworld-renderizado.png)
-
-### Principais aprendizados
-
 ## Desafio 5.2 — Componente Cartão de Perfil
 
 O objetivo do desafio foi criar um componente AEM do zero, sem herdar de Core Component, para compreender a estrutura mínima necessária:
@@ -906,6 +918,211 @@ data-sly-test="${perfil.cargo}"
 
 ![Perfil sem cargo](exercicios/semana-5/5.2-componente-cartao-perfil/docs/perfil-sem-cargo.png)
 
+# ✅ Semana 6 — Editable Templates e Políticas
+
+Durante a Semana 6, o foco foi aprofundar a criação de páginas no **Adobe Experience Manager**, utilizando **Editable Templates**, **Core Components**, políticas de conteúdo e o layout responsivo do AEM.
+
+O fluxo praticado foi:
+
+```text
+Template Type → Editable Template → Structure → Policy → Initial Content → Página
+```
+
+---
+
+## Desafio 6.1 — Editable Template + Políticas
+
+O objetivo do desafio foi criar um modelo de página reutilizável para o WKND, controlando a estrutura fixa, o conteúdo inicial, os componentes disponíveis para o autor e a organização responsiva da página.
+
+### Atividades realizadas
+
+- Criação do Editable Template `6.1 - Landing WKND`
+- Uso do Template Type `WKND Site Content Page`
+- Manutenção do header e do footer como elementos fixos da Structure
+- Configuração de um Layout Container central editável
+- Criação de uma policy exclusiva para o container principal
+- Restrição dos componentes disponíveis ao autor
+- Inclusão de Image e Text no Initial Content
+- Organização dos componentes em duas colunas no Layout Mode
+- Criação da página `Desafio 6.1` a partir do novo template
+- Configuração de imagem, título e texto na página
+- Validação da policy no editor e no CRXDE Lite
+- Exportação da implementação como pacote instalável pelo AEM Package Manager
+- Gravação de uma demonstração em vídeo
+
+### Editable Template
+
+O template foi criado em:
+
+```text
+Tools → General → Templates → WKND Site
+```
+
+Nome apresentado no AEM:
+
+```text
+6.1 - Landing WKND
+```
+
+Caminho do nó no JCR:
+
+```text
+/conf/wknd/settings/wcm/templates/6-1---landing-wknd
+```
+
+O template foi habilitado e passou a aparecer entre as opções disponíveis para criação de páginas no WKND.
+
+### Structure e Initial Content
+
+Na **Structure**, foram mantidos os elementos estruturais da página:
+
+```text
+Header fixo
+Layout Container central editável
+Footer fixo
+```
+
+O header e o footer permanecem controlados pelo template. O container central foi deixado editável para que o autor possa trabalhar com os componentes autorizados.
+
+No **Initial Content**, foram adicionados:
+
+```text
+Image
+Text
+```
+
+Esses componentes são copiados para as páginas criadas com o template e podem ser editados pelo autor.
+
+### Policy do container
+
+Foi criada uma policy específica para o container central.
+
+Caminho no JCR:
+
+```text
+/conf/wknd/settings/wcm/policies/wknd/components/container/policy_1784634913889
+```
+
+A propriedade `components` da policy contém somente os proxies dos seguintes Core Components:
+
+```text
+/apps/wknd/components/button
+/apps/wknd/components/image
+/apps/wknd/components/teaser
+/apps/wknd/components/text
+/apps/wknd/components/title
+```
+
+Com essa configuração, o painel do autor apresenta apenas:
+
+- Button
+- Image
+- Teaser
+- Text
+- Title
+
+Os componentes do WKND utilizados são proxies dos Core Components da Adobe. Dessa forma, a página reutiliza funcionalidades prontas, como acessibilidade, dialogs e comportamento responsivo, mantendo o controle das políticas dentro do projeto.
+
+### Layout responsivo
+
+No **Layout Mode**, a área principal foi organizada em duas colunas:
+
+```text
+Image: 6 colunas | Text: 6 colunas
+```
+
+A imagem ficou posicionada à esquerda e o texto à direita. A configuração foi realizada pela grade responsiva do Layout Container, sem a necessidade de criar CSS específico para essa divisão.
+
+### Página criada no Author
+
+A página de demonstração foi criada em:
+
+```text
+/content/wknd/us/en/desafio-6-1
+```
+
+O conteúdo configurado inclui:
+
+```text
+Imagem: Skate Park LA
+Título: Explore novas aventuras
+Texto: Conheça experiências, destinos e atividades selecionadas para quem busca aventura e contato com a natureza.
+```
+
+A página herdou do template:
+
+- Header
+- Footer
+- Container central editável
+- Image e Text em duas colunas
+- Policy com os componentes autorizados
+
+### Pacote AEM
+
+A implementação foi exportada pelo **AEM Package Manager** no arquivo:
+
+```text
+exercicios/semana-6/6.1-editableTemplate-politicas/desafio-6-1-1.0.0.zip
+```
+
+O pacote contém três conjuntos principais:
+
+```text
+/conf/wknd/settings/wcm/templates/6-1---landing-wknd
+/conf/wknd/settings/wcm/policies/wknd/components/container/policy_1784634913889
+/content/wknd/us/en/desafio-6-1
+```
+
+Assim, o template, a policy e a página de demonstração podem ser instalados em outra instância compatível do AEM por meio do Package Manager.
+
+### Arquivos relacionados
+
+- `exercicios/semana-6/6.1-editableTemplate-politicas/desafio-6-1-1.0.0.zip`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6-1-demonstracao.mp4`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-template.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-structure.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-policy-allowed-template.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-policy-allowed-editor.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-layout-colunas.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-pagina-final.png`
+- `exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-crxde_policy.png`
+
+### Evidências
+
+#### Template criado e habilitado
+
+![Template criado e habilitado](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-template.png)
+
+#### Structure do template
+
+![Structure do template](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-structure.png)
+
+#### Componentes permitidos no template
+
+![Allowed Components no template](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-policy-allowed-template.png)
+
+#### Componentes disponíveis no editor
+
+![Componentes disponíveis no editor](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-policy-allowed-editor.png)
+
+#### Layout organizado em colunas
+
+![Layout em duas colunas](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-layout-colunas.png)
+
+#### Página final
+
+![Página final do Desafio 6.1](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-pagina-final.png)
+
+#### Policy registrada no JCR
+
+![Policy no CRXDE Lite](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6.1-crxde_policy.png)
+
+### Demonstração em vídeo
+
+[Assistir à demonstração do Desafio 6.1](exercicios/semana-6/6.1-editableTemplate-politicas/docs/6-1-demonstracao.mp4)
+
+---
+
 # ⚙️ Informações do Projeto
 
 ## Tecnologias utilizadas
@@ -919,6 +1136,9 @@ data-sly-test="${perfil.cargo}"
 - Dawn Theme
 - Adobe Experience Manager
 - AEM Sites
+- Core Components
+- Editable Templates
+- AEM Package Manager
 - HTL
 - Apache Sling
 - Sling Models
@@ -955,6 +1175,7 @@ exercicio/4.1-performance-audit
 exercicio/4.2-tema-customizado
 exercicio/5.1-helloworld-subtitulo
 exercicio/5.2-componente-cartao-perfil
+exercicio/6.1-editable-template-politicas
 ```
 
 ---
@@ -988,6 +1209,8 @@ feat(helloworld): adicionar subtitulo configuravel
 docs: documentar desafio 5.1
 feat(perfil): criar componente cartao de perfil
 docs: documentar desafio 5.2
+feat(aem): criar editable template com policies
+docs: documentar desafio 6.1
 ```
 
 ---
@@ -1068,6 +1291,12 @@ Desafio 5.2:
 /content/wknd/us/en/desafio-5-2
 ```
 
+Desafio 6.1:
+
+```text
+/content/wknd/us/en/desafio-6-1
+```
+
 ## 5. Testar o Desafio 5.1
 
 1. Selecione o HelloWorld.
@@ -1088,6 +1317,18 @@ Desafio 5.2:
 7. Apague o Cargo.
 8. Salve e confirme que o Cargo não é renderizado.
 
+## 7. Instalar e testar o Desafio 6.1
+
+1. Abra o Package Manager em `http://localhost:4502/crx/packmgr/index.jsp`.
+2. Clique em `Upload Package`.
+3. Selecione o arquivo `exercicios/semana-6/6.1-editableTemplate-politicas/desafio-6-1-1.0.0.zip`.
+4. Faça o upload e clique em `Install`.
+5. Abra `Tools → General → Templates → WKND Site`.
+6. Confirme a presença do template `6.1 - Landing WKND`.
+7. Abra a página `/content/wknd/us/en/desafio-6-1`.
+8. Verifique a imagem e o texto em duas colunas.
+9. Confirme que o painel do container central apresenta apenas Button, Image, Teaser, Text e Title.
+
 ---
 
 # Organização do projeto
@@ -1106,6 +1347,10 @@ O repositório contém:
 - Sling Models
 - Dialogs Touch UI
 - Scripts HTL
+- Editable Templates
+- Policies do AEM
+- Pacotes instaláveis do AEM
+- Vídeos de demonstração
 - Documentação em Markdown
 - Arquivo `.gitignore`
 - README atualizado
@@ -1147,6 +1392,24 @@ Entre os principais aprendizados estão:
 - Componentes AEM podem ser construídos do zero sem herança de Core Component
 - O módulo `core` concentra o código Java e o módulo `ui.apps` concentra componentes, Dialogs e HTL
 - Deploy separado de bundle OSGi e pacote de conteúdo
+- Diferença entre Structure e Initial Content em Editable Templates
+- Uso de policies para limitar o que o autor pode adicionar
+- Reaproveitamento dos Core Components por meio de proxies do WKND
+- Organização responsiva de componentes no Layout Mode
+- Persistência de templates e policies dentro de `/conf`
+- Exportação de conteúdo com filtros específicos no AEM Package Manager
+- Diferença entre Template Type e Editable Template no AEM
+- Função da Structure e do Initial Content no AEM
+- Controle de edição por meio do bloqueio e desbloqueio de componentes no AEM
+- Configuração de policies em `/conf` no AEM
+- Restrição de componentes com Allowed Components no AEM
+- Uso dos proxies dos Core Components do WKND no AEM
+- Organização de componentes pela grade responsiva no AEM
+- Uso do Layout Mode para criar colunas no AEM
+- Herança de estrutura e conteúdo inicial pelas páginas no AEM
+- Identificação de templates e policies no CRXDE Lite no AEM
+- Exportação seletiva de conteúdo pelo AEM Package Manager
+- Relação entre os nós do template, da policy e da página no JCR no AEM
 
 ---
 
